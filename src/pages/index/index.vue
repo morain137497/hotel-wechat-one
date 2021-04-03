@@ -1,9 +1,22 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view>
-			<text class="title">{{title}}</text>
-		</view>
+	<view class="row">
+    <van-sidebar :active-key="currentActivityType" @change="changeActivityType">
+      <van-sidebar-item v-for="(item,index) in activityType" :key="index" :title="item.label" />
+    </van-sidebar>
+    <view class="activity-list">
+      <navigator class="activity-item" v-for="(item,index) in activityList" :key="index" url="/pages/activity-info/index">
+        <view class="cover">
+          <cover-image src="../../static/banner.jpg" class="border-radius-image-1" />
+        </view>
+        <view class="info">
+          <text class="title van-multi-ellipsis--l2">{{item.title}}</text>
+          <view class="row">
+            <text class="time">报名时间:{{item.depart_time}}</text>
+            <text class="price right">￥1314</text>
+          </view>
+        </view>
+      </navigator>
+    </view>
 	</view>
 </template>
 
@@ -11,39 +24,59 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+			  currentActivityType: 0,
+        activityType: [
+          {label: '周边活动'},
+          {label: '长线活动'}
+        ],
+        activityList: [
+          {
+            activity_id: '231',
+            title: '2312321',
+            depart_time: '2021-12-23',
+
+          },
+          {
+            activity_id: '231',
+            title: '2312321',
+            depart_time: '2021-12-23'
+          }
+        ]
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+      changeActivityType(index){
+      }
 		}
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin: 200rpx auto 50rpx auto;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="scss" scoped>
+.row{
+  align-items: flex-start;
+}
+.activity-list{
+  background: #FFF;
+  padding: 30rpx;
+  .activity-item{
+    .info{
+      padding: 20rpx;
+      font-weight: bold;
+      font-size: 28rpx;
+      .title{
+        color: #222;
+      }
+      .time{
+        font-weight: 400;
+        font-size: 24rpx;
+      }
+      .price{
+        color: red;
+      }
+    }
+  }
+}
 </style>
