@@ -6,7 +6,7 @@
       </view>
     </view>
     <van-checkbox-group :value="checkboxList" @change="selectContacts">
-      <view class="box" v-for="(item,index) in list" :lang="index">
+      <view class="box item" v-for="(item,index) in list" :lang="index">
         <van-cell :title="item.name">
           <view slot="right-icon">
             <van-icon  class="right del-icon" name="delete-o" @click="delContacts(index)" />
@@ -84,7 +84,7 @@ export default {
     }
   },
   computed:{
-      ...mapGetters("contacts", {
+      ...mapGetters("signUp", {
         getContactsList: 'getContactsList'
       }),
   },
@@ -92,7 +92,7 @@ export default {
     this.init()
   },
   methods: {
-    ...mapActions("contacts", {
+    ...mapActions("signUp", {
       setContactsList: 'setContactsList'
     }),
     init(){
@@ -127,9 +127,7 @@ export default {
     },
    okSelect(){
      this.updateSelectContactsList()
-      uni.redirectTo({
-        url: '/pages/sign-up/index'
-      })
+     uni.navigateBack()
     },
     updateSelectContactsList(){
       const selectList = []
@@ -154,7 +152,6 @@ export default {
   margin: 32rpx;
   align-self: center;
   background: #f9f9f9;
-  padding: 32rpx;
 }
 .del-icon{
   align-self: center;
@@ -180,5 +177,7 @@ export default {
   font-size: 24rpx;
   color: #888;
 }
-
+.item{
+  padding-bottom: 20rpx;
+}
 </style>

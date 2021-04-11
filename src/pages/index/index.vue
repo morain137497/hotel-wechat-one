@@ -4,7 +4,7 @@
       <van-sidebar-item v-for="(item,index) in activityType" :key="index" :title="item.label" />
     </van-sidebar>
     <view class="activity-list">
-      <navigator class="activity-item" v-for="(item,index) in activityList" :key="index" url="/pages/activity-info/index">
+      <navigator hover-class="none" class="activity-item" v-for="(item,index) in activityList" :key="index" url="/pages/activity-info/index">
         <view class="cover">
           <cover-image src="../../static/banner.jpg" class="border-radius-image-1" />
         </view>
@@ -21,7 +21,9 @@
 </template>
 
 <script>
-	export default {
+	import page from "../../utils/page";
+
+  export default {
 		data() {
 			return {
 			  currentActivityType: 0,
@@ -45,10 +47,17 @@
 			}
 		},
 		onLoad() {
-
+      this.getActivityList()
 		},
 		methods: {
       changeActivityType(index){
+      },
+      async getActivityList(){
+        const result = await this.$api.activity.activityList({
+          offset: '0',
+          count: page.PAGE_SIZE
+        })
+        console.log(result)
       }
 		}
 	}

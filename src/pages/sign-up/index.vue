@@ -13,8 +13,8 @@
     </view>
 
     <div class="box">
-      <van-cell title="优惠抵扣" value="小计:0元" />
-      <van-cell title="代金卷" value="您有四张可用" is-link />
+      <van-cell title="优惠抵扣" :value="'小计:' + (Object.keys(couponInfo).length == 0?0:couponInfo.price) + '元'" />
+      <van-cell title="代金卷" value="查看代金卷" is-link url="/pages/coupon/index" />
     </div>
 
     <van-goods-action>
@@ -31,31 +31,37 @@ import {mapGetters,mapActions} from 'vuex'
 			return {
         contactsList: [],
         price: 1314,
-        priceTotal: 0
+        priceTotal: 0,
+        couponInfo: {}
 			}
 		},
     computed:{
-      ...mapGetters("contacts", {
-        getContactsList: 'getContactsList'
+      ...mapGetters("signUp", {
+        getContactsList: 'getContactsList',
+        getCouponInfo: 'getCouponInfo'
       }),
     },
 		onLoad() {
-		  this.init()
+
 		},
+    onShow() {
+      this.init()
+    },
 		methods: {
-      ...mapActions("contacts", {
+      ...mapActions("signUp", {
         delContactsInfo: 'delContactsInfo'
       }),
 		  init(){
         this.contactsList = this.getContactsList
         this.priceTotal = this.contactsList.length * this.price
+        this.couponInfo = this.getCouponInfo
       },
       delContacts(index){
         this.delContactsInfo(index)
         this.priceTotal = this.priceTotal - this.price
       },
       toAddContacts(){
-        uni.redirectTo({
+        uni.navigateTo({
           url:'/pages/add-sign-up/index'
         })
       }

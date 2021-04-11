@@ -1,10 +1,14 @@
 const state = {
-    contactsList: []
+    contactsList: [],
+    couponInfo: {}
 }
 
 const getters = {
     getContactsList(state){
         return state.contactsList
+    },
+    getCouponInfo(state){
+        return state.couponInfo
     }
 }
 
@@ -15,7 +19,10 @@ const mutations = {
     },
     DEL_CONTACTS_INFO:(state, index) => {
         state.contactsList.splice(index, 1)
-    }
+    },
+    SET_COUPON_INFO:(state, info) => {
+        state.couponInfo = info
+    },
 }
 
 const actions = {
@@ -25,6 +32,9 @@ const actions = {
     delContactsInfo({commit}, index){
         commit('DEL_CONTACTS_INFO', index)
     },
+    setCouponInfo({commit}, info){
+        commit('SET_COUPON_INFO', info)
+    }
 }
 
 export default {

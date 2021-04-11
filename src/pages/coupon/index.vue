@@ -1,17 +1,25 @@
 <template>
 	<div class="column">
-    <van-checkbox-group >
+    <van-radio-group :value="couponId" @change="selectCoupon">
       <div class="box">
-        <div class="box-row">
-          <div class="explains">
-            <div>10元代金卷</div>
-            <div>满100元可用</div>
-            <div>过期时间:2021-3-12</div>
-          </div>
-          <van-checkbox class="right checkbox"  checked-color="#4cd964"/>
-        </div>
+        <van-cell title="不使用代金卷">
+          <view slot="right-icon">
+            <van-radio checked-color="#4cd964" name="0"/>
+          </view>
+        </van-cell>
       </div>
-    </van-checkbox-group>
+      <div class="box" v-for="(item,index) in couponList" :key="index">
+        <van-panel :title="item.price + '元代金卷'" :desc="'满'+item.explains+'元可用'" :status="'过期时间:'+item.valid_time">
+          <view class="panel-view">
+            <van-radio checked-color="#4cd964" :name="item.id"/>
+          </view>
+        </van-panel>
+      </div>
+    </van-radio-group>
+
+    <van-goods-action>
+      <van-goods-action-button type="primary"  text="确认使用" @click="okSelect()"/>
+    </van-goods-action>
   </div>
 </template>
 
@@ -24,55 +32,67 @@ import {mapGetters,mapActions} from 'vuex'
           {
             id: '231',
             price: 10,
-            explains: '说明',
-            valid_time: '2021-3-12 - 2021-3-24'
+            explains: '100',
+            valid_time: '2021-3-12'
           },
           {
-            id: '231',
+            id: '2311',
             price: 10,
-            explains: '说明',
-            valid_time: '2021-3-12 - 2021-3-24'
+            explains: '100',
+            valid_time: '2021-3-12'
           }
-        ]
+        ],
+        couponId: '0'
 			}
 		},
     computed:{
-      ...mapGetters("contacts", {
-        getContactsList: 'getContactsList'
+      ...mapGetters("signUp", {
+        getCouponInfo: 'getCouponInfo'
       }),
     },
 		onLoad() {
 		  this.init()
 		},
 		methods: {
-      ...mapActions("contacts", {
-        delContactsInfo: 'delContactsInfo'
+      ...mapActions("signUp", {
+        setCouponInfo: 'setCouponInfo'
       }),
+      okSelect(){
+        if(this.couponId !== '0'){
+          this.couponList.forEach(item => {
+            if(this.couponId === item.id){
+              this.setCouponInfo(item)
+            }
+          })
+        }else{
+          this.setCouponInfo({})
+        }
+        uni.navigateBack()
+      },
+      selectCoupon(event){
+        this.couponId = event.detail
+      },
 		  init(){
-        this.contactsList = this.getContactsList
-        this.priceTotal = this.contactsList.length * this.price
+        this.couponId = this.getCouponInfo.id
       },
       delContacts(index){
         this.delContactsInfo(index)
         this.priceTotal = this.priceTotal - this.price
       },
-      toAddContacts(){
-        uni.redirectTo({
-          url:'/pages/add-sign-up/index'
-        })
-      }
+      toAddContacts(){}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-.box-row{
-}
 .explains{
   display: flex;
   flex-direction: column;
 }
-.checkbox{
-  align-self: center;
+.panel-view{
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 </style>

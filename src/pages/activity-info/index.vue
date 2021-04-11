@@ -54,7 +54,6 @@
         dasd
         asd
         dasd
-
       </div>
     </div>
 
@@ -111,7 +110,7 @@
         uni.makePhoneCall({phoneNumber: '15893316477'});
       },
       toJoin(){
-        uni.redirectTo({
+        uni.navigateTo({
           url: '/pages/sign-up/index'
         });
       }
@@ -138,8 +137,5 @@
   .join-item{
     text-align: center;
   }
-}
-.column{
-  padding-bottom: 100rpx;
 }
 </style>
