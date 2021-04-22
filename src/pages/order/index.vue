@@ -1,6 +1,6 @@
 <template>
   <div class="my">
-    <van-tabs color="#4cd964">
+    <van-tabs color="#4cd964" :active="active">
       <van-tab v-for="(item,index) in orderNav" :key="index" :title="item.label">
         <div class="box">
           <van-panel title="活动名称" desc="天目山旅游活动与2021-12-12 12:12在北京市集合" status="2021-4-21 12:12">
@@ -15,10 +15,13 @@
 </template>
 
 <script>
+import {mapGetters,mapActions} from 'vuex'
+import auth from "../../utils/auth";
 export default {
   name: "index",
   data(){
     return{
+      active: 0,
       orderNav: [
         {
           label: '以付款',
@@ -41,6 +44,23 @@ export default {
           icon: 'close'
         }
       ]
+    }
+  },
+  computed:{
+    ...mapGetters("order", {
+      getCurrentActive: 'getCurrentActive'
+    }),
+  },
+  onShow() {
+    this.init()
+  },
+  methods:{
+    ...mapActions("order", {
+      setCurrentActive: 'setCurrentActive'
+    }),
+    init(){
+      this.active = this.getCurrentActive
+      this.setCurrentActive(0)
     }
   }
 }

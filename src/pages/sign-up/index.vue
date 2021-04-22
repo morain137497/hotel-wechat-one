@@ -3,7 +3,7 @@
     <view class="box">
       <van-cell title="报名信息" :value="'小计：'+priceTotal+'元'" />
       <view class="row contacts-item" v-for="(item, index) in contactsList" :key="index">
-        <text>{{item.name}}</text>
+        <text>{{item.realname}}</text>
         <van-tag class="phone-tag"  plain type="success">{{item.phone}}</van-tag>
         <van-icon  class="right del-icon" name="delete-o" @click="delContacts(index)" />
       </view>
@@ -15,6 +15,15 @@
     <div class="box">
       <van-cell title="优惠抵扣" :value="'小计:' + (Object.keys(couponInfo).length == 0?0:couponInfo.price) + '元'" />
       <van-cell title="代金卷" value="查看代金卷" is-link url="/pages/coupon/index" />
+    </div>
+
+    <div class="box">
+      <van-cell title="选择集合地点"  />
+      <van-radio-group >
+        <van-cell title="单元格">
+          <van-radio slot="right-icon" checked-color="#4cd964" />
+        </van-cell>
+      </van-radio-group>
     </div>
 
     <van-goods-action>
@@ -32,13 +41,15 @@ import {mapGetters,mapActions} from 'vuex'
         contactsList: [],
         price: 1314,
         priceTotal: 0,
-        couponInfo: {}
+        couponInfo: {},
+        activityId: ''
 			}
 		},
     computed:{
       ...mapGetters("signUp", {
         getContactsList: 'getContactsList',
-        getCouponInfo: 'getCouponInfo'
+        getCouponInfo: 'getCouponInfo',
+        getCurrentActivityId: 'getCurrentActivityId'
       }),
     },
 		onLoad() {
@@ -55,6 +66,7 @@ import {mapGetters,mapActions} from 'vuex'
         this.contactsList = this.getContactsList
         this.priceTotal = this.contactsList.length * this.price
         this.couponInfo = this.getCouponInfo
+        this.activityId = this.getCurrentActivityId
       },
       delContacts(index){
         this.delContactsInfo(index)

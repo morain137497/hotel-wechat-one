@@ -1,6 +1,7 @@
 const state = {
     contactsList: [],
-    couponInfo: {}
+    couponInfo: {},
+    currentActivityId: ''
 }
 
 const getters = {
@@ -9,6 +10,9 @@ const getters = {
     },
     getCouponInfo(state){
         return state.couponInfo
+    },
+    getCurrentActivityId(state){
+        return state.currentActivityId
     }
 }
 
@@ -23,6 +27,9 @@ const mutations = {
     SET_COUPON_INFO:(state, info) => {
         state.couponInfo = info
     },
+    SET_CURRENT_ACTIVITY_ID:(state, activityId) => {
+        state.currentActivityId = activityId
+    }
 }
 
 const actions = {
@@ -34,6 +41,9 @@ const actions = {
     },
     setCouponInfo({commit}, info){
         commit('SET_COUPON_INFO', info)
+    },
+    setCurrentActivityId({commit}, activityId){
+        commit('SET_CURRENT_ACTIVITY_ID', activityId)
     }
 }
 

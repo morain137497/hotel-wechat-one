@@ -1,3 +1,5 @@
+import {getUserInfo, getToken} from '../utils/auth'
+
 export default {
     request(options = {}){
         uni.showLoading({
@@ -5,14 +7,20 @@ export default {
         });
         const BASE_URL = "http://service.qunju.cn/"
         return new Promise(((resolve, reject) => {
+            const header = {}
+            const token = getToken()
+            if(token){
+                header['X-Token'] = token
+            }
             uni.request({
                 url: BASE_URL + options.url,
                 data: options.data?options.data:null,
+                header: header,
                 method: options.type,
                 success: (res) => {
                     uni.hideLoading();
-                    if(res.data.code === 0){
-                        console.log(res.data)
+                    if(res.data.code === 0 || res.data.code === 80050){
+                        resolve(res.data)
                     } else {
                         uni.showToast({
                             title: res.data.msg,

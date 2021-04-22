@@ -1,13 +1,25 @@
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
+  import {wechatLogin, getToken, getUserInfo, getPhone} from "./utils/auth";
+  import store from "./store";
+  export default {
+    onLaunch: function() {
+      if(!getToken()){
+        wechatLogin()
+      }
+      const userInfo = getUserInfo()
+      if(userInfo){
+        store.dispatch("user/setUserInfo", userInfo)
+      }
+      const phone = getPhone()
+      if(phone){
+        store.dispatch("user/setPhone", phone)
+      }
+
+      this.$isResolve()
 		},
 		onShow: function() {
-			console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide')
 		}
 	}
 </script>

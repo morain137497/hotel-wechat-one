@@ -1,10 +1,10 @@
 <template>
-	<view class="row">
-    <van-sidebar :active-key="currentActivityType" @change="changeActivityType">
+	<view class="row" v-if="city">
+    <van-sidebar class="sidebar" :active-key="currentActivityType" @change="changeActivityType">
       <van-sidebar-item v-for="(item,index) in activityType" :key="index" :title="item.label" />
     </van-sidebar>
     <view class="activity-list">
-      <navigator hover-class="none" class="activity-item" v-for="(item,index) in activityList" :key="index" url="/pages/activity-info/index">
+      <navigator hover-class="none" class="activity-item" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/index?activity_id='+item.activity_id">
         <view class="cover">
           <cover-image src="../../static/banner.jpg" class="border-radius-image-1" />
         </view>
@@ -22,32 +22,27 @@
 
 <script>
 	import page from "../../utils/page";
-
+	import {wechatLocation} from '../../utils/auth'
   export default {
 		data() {
 			return {
 			  currentActivityType: 0,
+        city: '',
         activityType: [
           {label: '周边活动'},
           {label: '长线活动'}
         ],
         activityList: [
-          {
-            activity_id: '231',
-            title: '2312321',
-            depart_time: '2021-12-23',
 
-          },
-          {
-            activity_id: '231',
-            title: '2312321',
-            depart_time: '2021-12-23'
-          }
         ]
 			}
 		},
-		onLoad() {
-      this.getActivityList()
+    async onLoad() {
+      await this.$onLaunched;
+		  await wechatLocation((city) => {
+		    this.city = city
+        this.getActivityList()
+      })
 		},
 		methods: {
       changeActivityType(index){
@@ -55,24 +50,32 @@
       async getActivityList(){
         const result = await this.$api.activity.activityList({
           offset: '0',
-          count: page.PAGE_SIZE
+          count: '4',
         })
-        console.log(result)
+        this.activityList = result.data
       }
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
 .row{
   align-items: flex-start;
 }
 .activity-list{
   background: #FFF;
   padding: 30rpx;
+  margin-left: 150rpx;
   .activity-item{
+    margin-bottom: 20rpx;
     .info{
-      padding: 20rpx;
+      padding: 10rpx;
       font-weight: bold;
       font-size: 28rpx;
       .title{
@@ -81,6 +84,7 @@
       .time{
         font-weight: 400;
         font-size: 24rpx;
+        color: #999;
       }
       .price{
         color: red;
@@ -88,4 +92,5 @@
     }
   }
 }
+
 </style>

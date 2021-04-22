@@ -5,9 +5,9 @@
         <text>添加联系人</text>
       </view>
     </view>
-    <van-checkbox-group :value="checkboxList" @change="selectContacts">
+    <van-checkbox-group :value="checkboxList" @change="selectContacts" v-if="list.length !== 0">
       <view class="box item" v-for="(item,index) in list" :lang="index">
-        <van-cell :title="item.name">
+        <van-cell :title="item.realname">
           <view slot="right-icon">
             <van-icon  class="right del-icon" name="delete-o" @click="delContacts(index)" />
           </view>
@@ -15,15 +15,17 @@
         <view class="row contacts-item">
           <view class="column">
             <text>手机号：{{item.phone}}</text>
-            <text>身份证号：{{item.id_number}}</text>
+            <text>身份证号：{{item.idcard}}</text>
           </view>
-          <van-checkbox class="right checkbox" :name="item.id" checked-color="#4cd964"/>
+          <van-checkbox class="right checkbox" :name="item.personnel_id" checked-color="#4cd964"/>
         </view>
         <view class="row contacts-item add-contacts">
           <text @click="contacts(index)">修改信息</text>
         </view>
       </view>
     </van-checkbox-group>
+
+    <van-empty description="暂无数据" v-if="list.length === 0" />
 
 
     <van-popup
@@ -34,9 +36,9 @@
         position="bottom">
 
         <view class="popup-box">
-          <van-field placeholder="请输入姓名" label="姓名" :value="info.name" @input="info.name = $event.detail"/>
+          <van-field placeholder="请输入姓名" label="姓名" :value="info.realname" @input="info.realname = $event.detail"/>
           <van-field placeholder="请输入手机号" label="手机号"  :value="info.phone" @input="info.phone = $event.detail"/>
-          <van-field placeholder="请输入身份证号" label="身份证号"  :value="info.id_number" @input="info.id_number = $event.detail"/>
+          <van-field placeholder="请输入身份证号" label="身份证号"  :value="info.idcard" @input="info.idcard = $event.detail"/>
           <view class="popup-bottom">
             <van-button type="primary" class="but" size="small" @click="add()">提交</van-button>
           </view>
@@ -58,27 +60,14 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   data() {
     return {
-      list:[
-        {
-          id:'1',
-          name:'1',
-          phone:'1',
-          id_number:'1'
-        },
-        {
-          id:'2',
-          name:'2',
-          phone:'2',
-          id_number:'2'
-        }
-      ],
+      list:[],
       checkboxList:[],
       show: false,
       info:{
-        id: 0,
-        name: '',
+        personnel_id: '',
+        realname: '',
         phone: '',
-        id_number: ''
+        idcard: ''
       },
       currentIndex: -1
     }
@@ -95,13 +84,18 @@ export default {
     ...mapActions("signUp", {
       setContactsList: 'setContactsList'
     }),
-    init(){
+     async init(){
+      await this.getList()
       const contactsList = this.getContactsList
       if(contactsList.length != 0){
         contactsList.forEach(item => {
-          this.checkboxList.push(item.id)
+          this.checkboxList.push(item.personnel_id)
         })
       }
+    },
+    async getList(){
+      const result = await this.$api.activity.getContactsList({offset:"0", count:"1000"})
+      this.list = result.data
     },
     selectContacts(event){
       this.checkboxList = event.detail
@@ -118,30 +112,38 @@ export default {
       this.info = this.$options.data().info
       this.currentIndex = -1
     },
-    add(){
-     if(this.currentIndex != -1){
-        this.list[this.currentIndex] = this.info
-        this.updateSelectContactsList()
-     }
+    async add(){
+      const result = await this.$api.activity.setContactsUser(this.info)
+      if(result.code === 0){
+        this.getList()
+        if(this.currentIndex != -1){
+          this.updateSelectContactsList()
+        }
+      }
+
      this.close()
     },
    okSelect(){
+
      this.updateSelectContactsList()
      uni.navigateBack()
     },
     updateSelectContactsList(){
       const selectList = []
       this.list.forEach(item => {
-        if(this.checkboxList.indexOf(item.id) != -1){
+        if(this.checkboxList.indexOf(item.personnel_id) != -1){
           selectList.push(item)
         }
       })
       this.setContactsList(selectList)
     },
-    delContacts(index){
-      this.checkboxList.splice(this.checkboxList.indexOf(this.list[index].id), 1)
-      this.updateSelectContactsList()
-      this.list.splice(index, 1)
+    async delContacts(index){
+      const result = await this.$api.activity.delContactsInfo({personnel_id: this.list[index].personnel_id})
+      if(result.code === 0){
+        this.checkboxList.splice(this.checkboxList.indexOf(this.list[index].personnel_id), 1)
+        this.updateSelectContactsList()
+        this.list.splice(index, 1)
+      }
     }
   }
 }

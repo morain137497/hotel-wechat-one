@@ -1,20 +1,11 @@
 <template>
 	<div class="column">
-   <div class="box">
-     <van-cell title="领队" />
-     <div class="user-list">
-       <div class="user-item">
-         <img class="header-image" src="../../static/banner.jpg" />
-         <view>向南</view>
-       </div>
-     </div>
-   </div>
     <div class="box">
       <van-cell title="队友" />
       <div class="user-list">
         <div class="user-item" v-for="(item,index) in userList" :key="index">
-          <img class="header-image" :src="item.header_image" />
-          <view>{{item.name}}</view>
+          <img class="header-image" :src="item.headimg" />
+          <view>{{item.nickname}}</view>
         </div>
       </div>
     </div>
@@ -25,56 +16,21 @@
 	export default {
 		data() {
 			return {
-        userList: [
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          },
-          {
-            id: '231',
-            name: '向南',
-            header_image: '../../static/banner.jpg',
-          }
-        ],
+        userList: [],
 			}
 		},
-
-		onLoad() {
-
+		onLoad(params) {
+      this.getList(params.activity_id)
 		},
 		methods: {
-
+		  async getList(activity_id){
+        const result = await this.$api.activity.signUpUserList({
+          activity_id: activity_id,
+          offset: '0',
+          count: '100000',
+        })
+        this.userList = result.data
+      }
     }
 	}
 </script>
