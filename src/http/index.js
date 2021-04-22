@@ -1,4 +1,4 @@
-import {getUserInfo, getToken} from '../utils/auth'
+import {getToken} from '../utils/auth'
 
 export default {
     request(options = {}){

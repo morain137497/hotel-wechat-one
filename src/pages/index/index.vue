@@ -6,7 +6,7 @@
     <view class="activity-list">
       <navigator hover-class="none" class="activity-item" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/index?activity_id='+item.activity_id">
         <view class="cover">
-          <cover-image src="../../static/banner.jpg" class="border-radius-image-1" />
+          <img src="../../static/banner.jpg" class="border-radius-image-1" />
         </view>
         <view class="info">
           <text class="title van-multi-ellipsis--l2">{{item.title}}</text>
@@ -16,6 +16,9 @@
           </view>
         </view>
       </navigator>
+      <div class="load-box" v-if="isLoad || !isHavData">
+        {{ loadText }}
+      </div>
     </view>
 	</view>
 </template>
@@ -32,9 +35,10 @@
           {label: '周边活动'},
           {label: '长线活动'}
         ],
-        activityList: [
-
-        ]
+        activityList: [],
+        isLoad: false,
+        isHavData: true,
+        loadText: '. . . 正在加载 . . .'
 			}
 		},
     async onLoad() {
@@ -44,15 +48,27 @@
         this.getActivityList()
       })
 		},
+    onReachBottom(){
+      if(!this.isLoad){
+        this.isLoad = true
+        this.getActivityList()
+      }
+    },
 		methods: {
       changeActivityType(index){
       },
       async getActivityList(){
         const result = await this.$api.activity.activityList({
-          offset: '0',
-          count: '4',
+          offset: this.activityList.length.toString(),
+          count: '10',
         })
-        this.activityList = result.data
+        if(result.code === 0 && result.data !== null) {
+          this.activityList = this.activityList.concat(result.data)
+          this.isLoad = false
+        } else {
+          this.loadText = ". . . 没有更多数据 . . ."
+          this.isHavData = false
+        }
       }
 		}
 	}
@@ -72,6 +88,7 @@
   background: #FFF;
   padding: 30rpx;
   margin-left: 150rpx;
+  width: 100%;
   .activity-item{
     margin-bottom: 20rpx;
     .info{
@@ -92,5 +109,14 @@
     }
   }
 }
-
+.load-box{
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+}
+.cover{
+  img{
+    height: 300rpx;
+  }
+}
 </style>

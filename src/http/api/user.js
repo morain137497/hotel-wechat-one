@@ -27,5 +27,11 @@ export default {
             data: params,
             type: 'post'
         });
+    },
+    getVipInfo(){
+        return http.request({
+            url: '4000/vip/getdetail',
+            type: 'post'
+        });
     }
 }

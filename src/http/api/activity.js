@@ -41,5 +41,33 @@ export default {
             data: params,
             type: 'post'
         });
+    },
+    async setJoinUp(params){
+        return http.request({
+            url: '4000/attend/setdetail',
+            data: params,
+            type: 'post'
+        });
+    },
+    async orderList(params){
+        return http.request({
+            url: '4000/attend/getlist',
+            data: params,
+            type: 'post'
+        });
+    },
+    async toPay(params){
+        return http.request({
+            url: '6000/payment/order',
+            data: params,
+            type: 'post'
+        });
+    },
+    async userCreateActivityList(params){
+        return http.request({
+            url: '4000/activity/getlist',
+            data: params,
+            type: 'post'
+        });
     }
 }

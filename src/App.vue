@@ -3,6 +3,9 @@
   import store from "./store";
   export default {
     onLaunch: function() {
+      uni.setEnableDebug({
+        enableDebug: true
+      })
       if(!getToken()){
         wechatLogin()
       }
@@ -79,6 +82,9 @@
     justify-content: center;
   }
   van-cell, van-panel{
+    width: 100%;
+  }
+  img{
     width: 100%;
   }
 </style>

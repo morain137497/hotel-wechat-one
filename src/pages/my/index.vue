@@ -9,15 +9,32 @@
           </div>
         </div>
       </div>
+
       <div class="box">
-        <van-cell title="订单" value="查看全部" is-link />
-        <div class="order-nav">
-          <div class="order-nav-item" v-for="(item,index) in orderNav" :key="index" @click="toOrder(index)">
-            <van-icon :name="item.icon" />
-            <view>{{item.label}}</view>
-          </div>
-        </div>
+        <van-cell title="用户编号" :value="vipInfo.user_id" />
+        <van-cell title="参与活动数量" :value="vipInfo.attend_cnt" />
+        <van-cell title="参与活动折扣" :value="vipInfo.discount + '%'" />
+        <van-cell title="VIP等级" :value="vipInfo.level" />
       </div>
+
+      <div class="box">
+        <van-cell title="正在集合中的活动" :border="false"/>
+        <van-panel v-for="(item, index) in activityList" :key="index" :title="item.title" :desc="'终点：' + item.end" :status="item.attend_suc?item.attend_suc:0 + '人报名成功'">
+          <view class="panel-view">
+            <van-button type="primary" size="mini" @click="toGatherList(item.activity_id)">查看报名用户</van-button>
+          </view>
+        </van-panel>
+      </div>
+
+<!--      <div class="box">-->
+<!--        <van-cell title="订单" value="查看全部" is-link />-->
+<!--        <div class="order-nav">-->
+<!--          <div class="order-nav-item" v-for="(item,index) in orderNav" :key="index" @click="toOrder(index)">-->
+<!--            <van-icon :name="item.icon" />-->
+<!--            <view>{{item.label}}</view>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
     <auth-dialog @wechatUserInfoSuccess="wechatUserInfoSuccess" v-if="Object.keys(userInfo).length === 0"/>
   </div>
@@ -54,7 +71,9 @@ export default {
         }
       ],
       userInfo: {},
-      phone: ''
+      phone: '',
+      vipInfo: {},
+      activityList: []
     }
   },
   computed:{
@@ -62,7 +81,7 @@ export default {
       getUserInfo: 'getUserInfo'
     }),
   },
-  onShow(){
+  onLoad(){
     this.init()
   },
   methods:{
@@ -74,17 +93,37 @@ export default {
     }),
     wechatUserInfoSuccess(){
       this.init()
-      console.log(this.userInfo)
-      console.log(this.getUserInfo)
     },
     init(){
       this.userInfo = this.getUserInfo
-
+      this.getVipInfo()
+      this.gatherActivityList()
+    },
+    toGatherList(activityId){
+      uni.navigateTo({
+        url: '/pages/gather-list/index?activityId='+activityId
+      });
     },
     toOrder(index){
       this.setCurrentActive(index)
       uni.switchTab({url: '/pages/order/index'})
     },
+    async getVipInfo(){
+      const result = await this.$api.user.getVipInfo()
+      if(result.code === 0){
+        this.vipInfo = result.data
+      }
+    },
+    async gatherActivityList(){
+      const result = await this.$api.activity.userCreateActivityList({
+        offset: '0',
+        count: '1000',
+        ongoing: '1'
+      })
+      if(result.code === 0 && result.data !== null) {
+        this.activityList = result.data
+      }
+    }
   }
 }
 </script>

@@ -14,10 +14,14 @@
           <div class="activity-number van-multi-ellipsis--l3">{{activityInfo.leader_introduce}}</div>
         </div>
       </div>
-      <van-cell :title="'开始报名时间:' + activityInfo.begin_time" :value="'截至报名时间:' + activityInfo.end_time" :border="false"/>
-      <van-cell :title="'活动开始时间:' + activityInfo.depart_time" :value="'活动结束时间:' + activityInfo.finish_time" :border="false"/>
-      <van-cell :title="'活动起点城市:' + activityInfo.start" :value="'活动结终点城市:' + activityInfo.end" :border="false"/>
-      <van-cell :title="'最多报名人数:' + activityInfo.attend_max" :value="'最少成对人数:' + activityInfo.attend_min"  :border="false"/>
+      <van-cell title="开始报名时间" :value="activityInfo.begin_time" />
+      <van-cell title="截至报名时间" :value="activityInfo.end_time" />
+      <van-cell title="活动开始时间" :value="activityInfo.depart_time" />
+      <van-cell title="活动结束时间" :value="activityInfo.finish_time"/>
+      <van-cell title="活动起点城市" :value="activityInfo.start" />
+      <van-cell title="活动终点城市" :value="activityInfo.end" />
+      <van-cell title="最多报名人数" :value="activityInfo.attend_max" />
+      <van-cell title="最少成对人数" :value="activityInfo.attend_min" />
     </div>
 
     <div class="box">
@@ -59,7 +63,7 @@ import {mapActions} from 'vuex'
 		},
 		methods: {
       ...mapActions("signUp", {
-        setCurrentActivityId: 'setCurrentActivityId'
+        setActivityInfo: 'setActivityInfo'
       }),
 		  async getActivityInfo(activity_id){
         const result = await this.$api.activity.activityInfo({
@@ -77,7 +81,7 @@ import {mapActions} from 'vuex'
         uni.makePhoneCall({phoneNumber: '15893316477'});
       },
       toJoin(){
-        this.setCurrentActivityId(this.activityInfo.activity_id)
+        this.setActivityInfo(this.activityInfo)
         uni.navigateTo({
           url: '/pages/sign-up/index'
         });
@@ -92,8 +96,9 @@ import {mapActions} from 'vuex'
   padding-bottom: 100rpx;
 }
 .ld-info{
-  padding-left: 20rxp !important;
-  font-size: 28rpx !important;
+  padding-top: 16rpx;
+  padding-left: 20rxp ;
+  font-size: 28rpx ;
   .activity-number{
     color: #999;
     font-size: 24rpx;

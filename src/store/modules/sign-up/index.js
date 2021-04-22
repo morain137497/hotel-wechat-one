@@ -1,7 +1,12 @@
 const state = {
     contactsList: [],
     couponInfo: {},
-    currentActivityId: ''
+    gatherList: [
+        {address: '北京', time: '2021-2-23 12:32:12'},
+        {address: '上海', time: '2021-2-23 12:32:12'},
+        {address: '天津', time: '2021-2-23 12:32:12'}
+    ],
+    activityInfo: {}
 }
 
 const getters = {
@@ -11,8 +16,11 @@ const getters = {
     getCouponInfo(state){
         return state.couponInfo
     },
-    getCurrentActivityId(state){
-        return state.currentActivityId
+    getGatherList(state){
+        return state.gatherList
+    },
+    getActivityInfo(state){
+        return state.activityInfo
     }
 }
 
@@ -27,8 +35,11 @@ const mutations = {
     SET_COUPON_INFO:(state, info) => {
         state.couponInfo = info
     },
-    SET_CURRENT_ACTIVITY_ID:(state, activityId) => {
-        state.currentActivityId = activityId
+    SET_GATHER_LIST:(state, gatherList) => {
+        state.gatherList = gatherList
+    },
+    SET_ACTIVITY_INFO:(state, activityInfo) => {
+        state.activityInfo = activityInfo
     }
 }
 
@@ -42,8 +53,11 @@ const actions = {
     setCouponInfo({commit}, info){
         commit('SET_COUPON_INFO', info)
     },
-    setCurrentActivityId({commit}, activityId){
-        commit('SET_CURRENT_ACTIVITY_ID', activityId)
+    setGatherList({commit}, gatherList){
+        commit('SET_GATHER_LIST', gatherList)
+    },
+    setActivityInfo({commit}, activityInfo){
+        commit('SET_ACTIVITY_INFO', activityInfo)
     }
 }
 
