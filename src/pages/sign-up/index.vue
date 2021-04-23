@@ -67,11 +67,10 @@ import {mapGetters,mapActions} from 'vuex'
       }),
 		  init(){
         this.contactsList = this.getContactsList
-        this.priceTotal = this.contactsList.length * this.activityInfo.fee
+        this.activityInfo = this.getActivityInfo
+        this.priceTotal = this.contactsList.length * (Number(this.activityInfo.fee) / 100)
         this.couponInfo = this.getCouponInfo
         this.gatherList = this.getGatherList
-        this.activityInfo = this.getActivityInfo
-        this.activityInfo.fee = Number(this.activityInfo.fee) / 100
       },
       delContacts(index){
         this.delContactsInfo(index)

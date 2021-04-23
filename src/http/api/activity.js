@@ -69,5 +69,12 @@ export default {
             data: params,
             type: 'post'
         });
+    },
+    async setGather(params){
+        return http.request({
+            url: '4000/attend/setgather',
+            data: params,
+            type: 'post'
+        });
     }
 }

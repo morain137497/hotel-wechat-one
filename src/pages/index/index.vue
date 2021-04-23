@@ -12,7 +12,7 @@
           <text class="title van-multi-ellipsis--l2">{{item.title}}</text>
           <view class="row">
             <text class="time">报名时间:{{item.depart_time}}</text>
-            <text class="price right">￥1314</text>
+            <text class="price right">￥{{ Number(item.fee) / 100 }}/人</text>
           </view>
         </view>
       </navigator>

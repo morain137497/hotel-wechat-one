@@ -28,6 +28,7 @@
           activity_id: activity_id,
           offset: '0',
           count: '100000',
+          status: '4'
         })
         this.userList = result.data
       }

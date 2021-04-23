@@ -14,6 +14,9 @@
           <div class="activity-number van-multi-ellipsis--l3">{{activityInfo.leader_introduce}}</div>
         </div>
       </div>
+      <van-cell title="活动标题" :value="activityInfo.title" />
+      <van-cell title="当前活动状态" :value="activityInfo.state === '1' ? '还未开始' : activityInfo.state === '2' ? '报名中' : '---'" />
+      <van-cell title="活动价格" :value="(Number(activityInfo.fee) / 100) + '元/人'" />
       <van-cell title="开始报名时间" :value="activityInfo.begin_time" />
       <van-cell title="截至报名时间" :value="activityInfo.end_time" />
       <van-cell title="活动开始时间" :value="activityInfo.depart_time" />
@@ -40,10 +43,10 @@
       </div>
     </div>
 
-    <van-goods-action>
+    <van-goods-action >
       <van-goods-action-icon icon="friends-o" text="微信群号" @click="inGroup()"  />
       <van-goods-action-icon icon="phone-o" text="联系领队"  @click="callPhone()"/>
-      <van-goods-action-button type="primary"  text="我要报名" @click="toJoin()"/>
+      <van-goods-action-button type="primary"  :text="activityInfo.state === '1' ? '活动还未开始' : activityInfo.state === '2' ? '去报名' : '---'" @click="toJoin()" :disabled="activityInfo.state !== '2'"/>
     </van-goods-action>
   </view>
 </template>

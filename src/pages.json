@@ -1,9 +1,15 @@
 {
 	"pages": [
 		{
-			"path": "pages/gather-list/index",
+			"path": "pages/order/index",
 			"style": {
-				"navigationBarTitleText": "报名用户列表"
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
@@ -13,16 +19,9 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/gather-list/index",
 			"style": {
-				"navigationBarTitleText": "首页"
-			}
-		},
-
-		{
-			"path": "pages/order/index",
-			"style": {
-				"navigationBarTitleText": "订单"
+				"navigationBarTitleText": "报名用户列表"
 			}
 		},
 		{
