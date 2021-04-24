@@ -54,11 +54,11 @@ export default {
     this.userInfo = this.getUserInfo
     this.phone = this.getPhone
     if(this.phone){
-      this.authPhone = true
+      // this.authPhone = true
       this.text = '授权获取用户信息，领取旅游大礼包'
     }
     if(Object.keys(this.userInfo).length !== 0){
-     this.authUserInfo = true
+     // this.authUserInfo = true
     }
   }
 }

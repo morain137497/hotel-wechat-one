@@ -42,7 +42,6 @@
       <div class="box-row" v-html="activityInfo.content">
       </div>
     </div>
-
     <van-goods-action >
       <van-goods-action-icon icon="friends-o" text="微信群号" @click="inGroup()"  />
       <van-goods-action-icon icon="phone-o" text="联系领队"  @click="callPhone()"/>
@@ -50,19 +49,25 @@
     </van-goods-action>
   </view>
 </template>
-
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
   export default {
 		data() {
 			return {
         activityInfo: {},
         articleInfo: {},
-        attends: []
+        attends: [],
+        userInfo: {},
 			}
 		},
+    computed:{
+      ...mapGetters("user", {
+        getUserInfo: 'getUserInfo'
+      }),
+    },
 		onLoad(params) {
       this.getActivityInfo(params.activity_id)
+      this.userInfo = this.getUserInfo
 		},
 		methods: {
       ...mapActions("signUp", {
@@ -84,10 +89,16 @@ import {mapActions} from 'vuex'
         uni.makePhoneCall({phoneNumber: '15893316477'});
       },
       toJoin(){
-        this.setActivityInfo(this.activityInfo)
-        uni.navigateTo({
-          url: '/pages/sign-up/index'
-        });
+        if(Object.keys(this.userInfo).length === 0){
+          uni.navigateTo({
+            url: '/pages/login/index'
+          })
+        } else {
+          this.setActivityInfo(this.activityInfo)
+          uni.navigateTo({
+            url: '/pages/sign-up/index'
+          });
+        }
       }
 		}
 

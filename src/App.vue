@@ -17,7 +17,6 @@
       if(phone){
         store.dispatch("user/setPhone", phone)
       }
-
       this.$isResolve()
 		},
 		onShow: function() {

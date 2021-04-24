@@ -32,7 +32,6 @@
           </view>
         </van-panel>
       </div>
-
 <!--      <div class="box">-->
 <!--        <van-cell title="订单" value="查看全部" is-link />-->
 <!--        <div class="order-nav">-->
@@ -43,16 +42,13 @@
 <!--        </div>-->
 <!--      </div>-->
     </div>
-    <auth-dialog @wechatUserInfoSuccess="wechatUserInfoSuccess" v-if="Object.keys(userInfo).length === 0"/>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import authDialog from '../auth-dialog'
 export default {
   name: "index",
-  components: {authDialog},
   data(){
     return{
       orderNav: [
@@ -92,16 +88,18 @@ export default {
   onLoad(){
     this.init()
   },
+  onShow(){
+    this.userInfo = this.getUserInfo
+    if(Object.keys(this.userInfo).length === 0){
+      uni.navigateTo({
+        url: '/pages/login/index'
+      })
+    }
+  },
   methods:{
     ...mapActions("order", {
       setCurrentActive: 'setCurrentActive'
     }),
-    ...mapActions("user", {
-      setUserInfo: 'setUserInfo'
-    }),
-    wechatUserInfoSuccess(){
-      this.init()
-    },
     init(){
       this.userInfo = this.getUserInfo
       if(Object.keys(this.userInfo).length !== 0){
@@ -109,7 +107,6 @@ export default {
         this.getLeaderInfo()
         this.gatherActivityList()
       }
-
     },
     toGatherList(activityId){
       uni.navigateTo({

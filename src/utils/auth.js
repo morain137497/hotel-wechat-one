@@ -70,11 +70,13 @@ export function wechatLocation(callback){
 
 export async function bindPhone(params, callback){
     const result = await api.user.bindPhone({app_id: APP_ID, tmp_token: getToken(),encrypted_data: params.detail.encryptedData,lv:params.detail.iv})
-    setToken(result.token)
-    setPhone('123456789')
-    store.dispatch("user/setToken", result.token)
-    store.dispatch("user/setPhone",getPhone())
-    callback()
+    if(result.code === 0){
+        setToken(result.token)
+        setPhone('123456789')
+        store.dispatch("user/setToken", result.token)
+        store.dispatch("user/setPhone",getPhone())
+        callback()
+    }
 }
 
 export function wechatLogin(){
