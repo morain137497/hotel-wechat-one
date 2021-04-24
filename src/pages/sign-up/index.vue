@@ -51,8 +51,7 @@ import {mapGetters,mapActions} from 'vuex'
       ...mapGetters("signUp", {
         getContactsList: 'getContactsList',
         getCouponInfo: 'getCouponInfo',
-        getActivityInfo: 'getActivityInfo',
-        getGatherList: 'getGatherList'
+        getActivityInfo: 'getActivityInfo'
       }),
     },
 		onLoad() {
@@ -70,7 +69,7 @@ import {mapGetters,mapActions} from 'vuex'
         this.activityInfo = this.getActivityInfo
         this.priceTotal = this.contactsList.length * (Number(this.activityInfo.fee) / 100)
         this.couponInfo = this.getCouponInfo
-        this.gatherList = this.getGatherList
+        this.gatherList = JSON.parse(this.activityInfo.gather)
       },
       delContacts(index){
         this.delContactsInfo(index)

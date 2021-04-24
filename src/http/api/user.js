@@ -33,5 +33,11 @@ export default {
             url: '4000/vip/getdetail',
             type: 'post'
         });
+    },
+    getLeaderInfo(){
+        return http.request({
+            url: '4000/leader/getdetail',
+            type: 'post'
+        });
     }
 }

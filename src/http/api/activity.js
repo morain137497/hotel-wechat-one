@@ -76,5 +76,12 @@ export default {
             data: params,
             type: 'post'
         });
+    },
+    async cancelSignUp(params){
+        return http.request({
+            url: '4000/attend/deldetail',
+            data: params,
+            type: 'post'
+        });
     }
 }

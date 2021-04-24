@@ -19,14 +19,13 @@ export default {
                 method: options.type,
                 success: (res) => {
                     uni.hideLoading();
-                    if(res.data.code === 0 || res.data.code === 80050){
-                        resolve(res.data)
-                    } else {
-                        uni.showToast({
-                            title: res.data.msg,
-                            duration: 2000
-                        });
-                    }
+                    resolve(res.data)
+                    // else {
+                    //     uni.showToast({
+                    //         title: res.data.msg,
+                    //         duration: 2000
+                    //     });
+                    // }
                 }
             })
         }))

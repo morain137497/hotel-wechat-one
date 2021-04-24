@@ -11,10 +11,17 @@
       </div>
 
       <div class="box">
+        <div class="box">
         <van-cell title="用户编号" :value="vipInfo.user_id" />
         <van-cell title="参与活动数量" :value="vipInfo.attend_cnt" />
         <van-cell title="参与活动折扣" :value="vipInfo.discount + '%'" />
         <van-cell title="VIP等级" :value="vipInfo.level" />
+      </div>
+        <van-cell title="领队等级" :value="leaderInfo.level" />
+        <van-cell title="领队简介" :value="leaderInfo.introduce" />
+        <van-cell title="领队补贴" :value="(Number(leaderInfo.subsidies) / 100) + '元'" />
+        <van-cell title="领队提成" :value="Number(leaderInfo.commission) / 10 + '成'" />
+        <van-cell title="领队奖金" :value="(Number(leaderInfo.bonus) / 100) + '元'" />
       </div>
 
       <div class="box">
@@ -73,7 +80,8 @@ export default {
       userInfo: {},
       phone: '',
       vipInfo: {},
-      activityList: []
+      activityList: [],
+      leaderInfo: {}
     }
   },
   computed:{
@@ -96,8 +104,12 @@ export default {
     },
     init(){
       this.userInfo = this.getUserInfo
-      this.getVipInfo()
-      this.gatherActivityList()
+      if(Object.keys(this.userInfo).length !== 0){
+        this.getVipInfo()
+        this.getLeaderInfo()
+        this.gatherActivityList()
+      }
+
     },
     toGatherList(activityId){
       uni.navigateTo({
@@ -112,6 +124,12 @@ export default {
       const result = await this.$api.user.getVipInfo()
       if(result.code === 0){
         this.vipInfo = result.data
+      }
+    },
+    async getLeaderInfo(){
+      const result = await this.$api.user.getLeaderInfo()
+      if(result.code === 0){
+        this.leaderInfo = result.data
       }
     },
     async gatherActivityList(){
