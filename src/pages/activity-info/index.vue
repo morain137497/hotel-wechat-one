@@ -32,7 +32,7 @@
       <div class="box-row join-list">
         <div class="join-item" v-for="(item,index) in attends" :key="index">
           <img class="header-image" :src="item.headimg" alt="">
-          <div>{{item.nickname}}</div>
+          <div>{{item.personnel_id}}</div>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <van-goods-action >
-      <van-goods-action-icon icon="friends-o" text="微信群号" @click="inGroup()"  />
+<!--      <van-goods-action-icon icon="friends-o" text="微信群号" @click="inGroup()"  />-->
       <van-goods-action-icon icon="phone-o" text="联系领队"  @click="callPhone()"/>
       <van-goods-action-button type="primary"  :text="activityInfo.state === '1' ? '活动还未开始' : activityInfo.state === '2' ? '去报名' : '---'" @click="toJoin()" :disabled="activityInfo.state !== '2'"/>
     </van-goods-action>
@@ -86,7 +86,7 @@ import {mapActions, mapGetters} from 'vuex'
         uni.setClipboardData({data: '2121'})
       },
       callPhone(){
-        uni.makePhoneCall({phoneNumber: '15893316477'});
+        uni.makePhoneCall({phoneNumber: this.activityInfo.leader_phone});
       },
       toJoin(){
         if(Object.keys(this.userInfo).length === 0){

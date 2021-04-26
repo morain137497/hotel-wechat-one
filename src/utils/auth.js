@@ -101,7 +101,6 @@ export function wechatUserInfo(callback){
             }
             setUserInfo(userInfo)
             store.dispatch("user/setUserInfo", userInfo)
-            console.log(result)
             api.user.setUserInfo({
                 app_id: APP_ID,
                 row_data: result.rawData,

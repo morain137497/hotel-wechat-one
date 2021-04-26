@@ -4,18 +4,18 @@
 <!--      <van-tab v-for="(item,index) in orderNav" :key="index" :title="item.label">-->
         <template v-if="orderList.length !== 0">
           <div class="box" v-for="(item,index) in orderList" :key="index">
-            <van-panel :title="item.title" desc="天目山旅游活动与2021-12-12 12:12在北京市集合" :status="item.create_time">
+            <van-panel :title="item.activity.title" :desc="item.gather.time + '在' + item.gather.address + '集合'" :status="item.create_time">
               <view class="panel-view">
                 <van-tag type="success">{{item.realname}}</van-tag>
                 <van-tag type="success">{{item.phone}}</van-tag>
-                <van-tag type="warning" v-if="item.state === '2' || (item.state !== '2' && item.status_pay === '1')">{{item.status_pay === '0' ? '未支付' : '已支付0.01元'}}</van-tag>
-                <van-tag type="warning" v-if="item.state !== '2' && item.status_pay === '0'">未支付，报名取消</van-tag>
+                <van-tag type="warning" v-if="item.activity.state === '2' || (item.activity.state !== '2' && item.status_pay === '1')">{{item.status_pay === '0' ? '未支付' : '已支付'+(Number(item.dsc_detail.amount) / 100)+'元'}}</van-tag>
+                <van-tag type="warning" v-if="item.activity.state !== '2' && item.status_pay === '0'">未支付，报名取消</van-tag>
                 <!--          <van-tag type="warning" v-if="item.expire_time > 0 && item.status_pay === '0'"><van-count-down :time="item.expire_time" />过期</van-tag>-->
-                <van-tag type="warning">活动{{item.state === '2' ? '报名中' : item.state === '3' ? '集合中' : item.state === '4' ? '进行中' : '已结束'}}</van-tag>
+                <van-tag type="warning">活动{{item.activity.state === '2' ? '报名中' : item.activity.state === '3' ? '集合中' : item.activity.state === '4' ? '进行中' : '已结束'}}</van-tag>
               </view>
-              <view class="panel-view" v-if="item.state === '2'">
+              <view class="panel-view" v-if="item.activity.state === '2'">
                 <van-button type="primary" size="mini" v-if="item.status_cancel === '0'" @click="cancelSignUp(item.attend_id, index)">取消报名</van-button>
-                <van-button type="primary" size="mini" v-if="item.status_pay === '0' && item.status_cancel === '0'" @click="toPay(item)">去支付</van-button>
+                <van-button type="primary" size="mini" v-if="item.status_pay === '0' && item.status_cancel === '0'" @click="toPay(item, index)">去支付</van-button>
               </view>
             </van-panel>
           </div>
@@ -27,6 +27,7 @@
 </template>
 <script>
 import {mapGetters,mapActions} from 'vuex'
+import {APP_ID} from "../../utils/auth";
 export default {
   name: "index",
   data(){
@@ -74,8 +75,25 @@ export default {
       }
       this.getOrderList()
     },
-    toPay(item){
-      console.log(item)
+    async toPay(item, index){
+      const res = await this.$api.activity.toPay({pay_id: item.pay_id, app_id: APP_ID, jsapi: "1"})
+      if(res.code === 0){
+        const params = res.data
+        wx.requestPayment({
+          timeStamp: params.timeStamp,
+          nonceStr: params.nonceStr,
+          package: "prepay_id=" + JSON.parse(params.package).prepay_id,
+          "signType": "RSA",
+          paySign: params.paySign,
+          success: (res) => {
+            this.orderList[index].status_pay = '1'
+            console.log(res)
+          },
+          fail: (error) => {
+            console.log(error)
+          },
+        })
+      }
     },
     cancelSignUp(attend_id, index){
       uni.showModal({
@@ -107,9 +125,11 @@ export default {
       })
       if(result.code === 0 && result.data !== null){
         this.orderList = result.data
-        // this.orderList.forEach(item => {
+        this.orderList.forEach(item => {
         //   item.expire_time = ((new Date(item.create_time).getTime() + (2*60*60*1000)) - new Date().getTime())
-        // })
+          item.gather = JSON.parse(item.gather)
+          item.dsc_detail = JSON.parse(item.dsc_detail)
+        })
       } else {
         this.orderList = []
       }

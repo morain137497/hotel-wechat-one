@@ -50,8 +50,8 @@
     margin-left: auto;
   }
   .header-image{
-    height: 80rpx;
-    width: 80rpx;
+    height: 80rpx !important;
+    width: 80rpx !important;
     border-radius: 40rpx;
   }
   .box{

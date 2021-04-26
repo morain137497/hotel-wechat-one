@@ -5,7 +5,7 @@
       <div class="user-list">
         <div class="user-item" v-for="(item,index) in userList" :key="index">
           <img class="header-image" :src="item.headimg" />
-          <view>{{item.nickname}}</view>
+          <view>{{item.personnel_id}}</view>
         </div>
       </div>
     </div>

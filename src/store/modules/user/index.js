@@ -44,7 +44,6 @@ const actions = {
     },
     async login({commit}, code){
         const result = await api.user.wechatLogin({app_id: APP_ID, jscode: code})
-        console.log(result)
         if(result.code === 80050) {
             setToken(result.tmp_token)
             commit('SET_TOKEN', result.tmp_token)
@@ -54,13 +53,15 @@ const actions = {
             commit('SET_TOKEN', result.token)
             setPhone(result.data.phone)
             commit('SET_PHONE', result.data.phone)
-            console.log(getPhone())
             const userInfo = {}
             if(result.data.nickname){
                 userInfo.nickname = result.data.nickname
             }
             if(result.data.nickname){
                 userInfo.headimg = result.data.headimg
+            }
+            if(result.data.type){
+                userInfo.type = result.data.type
             }
             commit('SET_USER_INFO', userInfo)
             setUserInfo(userInfo)

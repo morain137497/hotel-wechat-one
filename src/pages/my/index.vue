@@ -11,12 +11,12 @@
       </div>
 
       <div class="box">
-        <div class="box">
         <van-cell title="用户编号" :value="vipInfo.user_id" />
         <van-cell title="参与活动数量" :value="vipInfo.attend_cnt" />
         <van-cell title="参与活动折扣" :value="vipInfo.discount + '%'" />
         <van-cell title="VIP等级" :value="vipInfo.level" />
       </div>
+      <div class="box" v-if="userInfo.type !== '1' || userInfo.type !== '3'">
         <van-cell title="领队等级" :value="leaderInfo.level" />
         <van-cell title="领队简介" :value="leaderInfo.introduce" />
         <van-cell title="领队补贴" :value="(Number(leaderInfo.subsidies) / 100) + '元'" />
@@ -24,9 +24,12 @@
         <van-cell title="领队奖金" :value="(Number(leaderInfo.bonus) / 100) + '元'" />
       </div>
 
-      <div class="box">
+      <div class="box" v-if="userInfo.type !== '1' || userInfo.type !== '3'">
         <van-cell title="正在集合中的活动" :border="false"/>
-        <van-panel v-for="(item, index) in activityList" :key="index" :title="item.title" :desc="'终点：' + item.end" :status="item.attend_suc?item.attend_suc:0 + '人报名成功'">
+        <van-panel v-for="(item, index) in activityList" :key="index" :title="item.title" :desc="'终点：' + item.end" :status="(item.attend_suc?item.attend_suc:0) + '人报名成功'">
+          <view class="panel-view">
+            <van-tag type="success">出发时间 : {{item.depart_time}}</van-tag>
+          </view>
           <view class="panel-view">
             <van-button type="primary" size="mini" @click="toGatherList(item.activity_id)">查看报名用户</van-button>
           </view>

@@ -4,7 +4,7 @@
       <van-sidebar-item v-for="(item,index) in activityType" :key="index" :title="item.label" />
     </van-sidebar>
     <view class="activity-list">
-      <navigator hover-class="none" class="activity-item" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/index?activity_id='+item.activity_id">
+      <navigator hover-class="none" class="activity-item"   v-if="activityList.length !== 0" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/index?activity_id='+item.activity_id">
         <view class="cover">
           <img src="../../static/banner.jpg" class="border-radius-image-1" />
         </view>
@@ -16,11 +16,12 @@
           </view>
         </view>
       </navigator>
-      <div class="load-box" v-if="isLoad || !isHavData">
+      <div class="load-box" v-if="(isLoad || !isHavData) && activityList.length !== 0">
         {{ loadText }}
       </div>
+      <van-empty class="empty-my" v-if="activityList.length === 0" description="暂无数据" />
     </view>
-	</view>
+  </view>
 </template>
 
 <script>
@@ -60,7 +61,7 @@
       async getActivityList(){
         const result = await this.$api.activity.activityList({
           offset: this.activityList.length.toString(),
-          count: '10',
+          count: page.PAGE_SIZE
         })
         if(result.code === 0 && result.data !== null) {
           this.activityList = this.activityList.concat(result.data)

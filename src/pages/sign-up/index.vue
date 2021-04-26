@@ -19,9 +19,9 @@
 
     <div class="box">
       <van-cell title="选择集合地点"  />
-      <van-radio-group :value="currentGather"  @change="selectGather">
+      <van-radio-group :value="currentGather.index"  @change="selectGather">
         <van-cell v-for="(item,index) in gatherList" :key="index" :title="item.time + '在' + item.address + '集合'">
-          <van-radio slot="right-icon" checked-color="#4cd964" :name="item.address"/>
+          <van-radio slot="right-icon" checked-color="#4cd964" :name="index"/>
         </van-cell>
       </van-radio-group>
     </div>
@@ -43,7 +43,11 @@ import {mapGetters,mapActions} from 'vuex'
         priceTotal: 0,
         couponInfo: {},
         gatherList: [],
-        currentGather: '',
+        currentGather: {
+          index: '',
+          address: '',
+          time: ''
+        },
         activityInfo: {}
 			}
 		},
@@ -81,7 +85,9 @@ import {mapGetters,mapActions} from 'vuex'
         })
       },
       selectGather(event){
-        this.currentGather = event.detail
+        this.currentGather.index = event.detail
+        this.currentGather.address = this.gatherList[event.detail].address
+        this.currentGather.time = this.gatherList[event.detail].time
       },
       async toPay(){
         const params = {
@@ -98,7 +104,10 @@ import {mapGetters,mapActions} from 'vuex'
         this.contactsList.forEach(item => {
           const contacts = {
             personnel_id: item.personnel_id,
-            gather: this.currentGather
+            gather: JSON.stringify({
+              address: this.currentGather.address,
+              time: this.currentGather.time
+            })
           }
           params.persons.push(contacts)
         })
@@ -114,7 +123,18 @@ import {mapGetters,mapActions} from 'vuex'
                 "signType": "RSA",
                 paySign: params.paySign,
                 success: (res) => {
-                  console.log(res)
+                  uni.showToast({title: '报名成功'})
+                  uni.showModal({
+                    title: '提示',
+                    content: '去订单页面查看?',
+                    success: (res) => {
+                      if (res.confirm){
+                        uni.switchTab({
+                          url: '/pages/order/index'
+                        });
+                      }
+                    }
+                  })
                 },
                 fail: (error) => {
                   console.log(error)
