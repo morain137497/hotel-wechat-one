@@ -4,14 +4,18 @@
       <van-sidebar-item v-for="(item,index) in activityType" :key="index" :title="item.label" />
     </van-sidebar>
     <view class="activity-list">
-      <navigator hover-class="none" class="activity-item"   v-if="activityList.length !== 0" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/fl?activity_id='+item.activity_id">
+      <navigator hover-class="none" class="activity-item"   v-if="activityList.length !== 0" v-for="(item,index) in activityList" :key="index" :url="'/pages/activity-info/index?activity_id='+item.activity_id">
         <view class="cover">
-          <img src="../../static/banner.jpg" class="border-radius-image-1" />
+          <img :src="item.image_uri" class="border-radius-image-1" />
+          <div class="zz">
+            <span class="start-city">{{item.start}}出发</span>
+            <span class="days">{{item.days}}天</span>
+          </div>
         </view>
         <view class="info">
           <text class="title van-multi-ellipsis--l2">{{item.title}}</text>
           <view class="row">
-            <text class="time">报名时间:{{item.depart_time}}</text>
+            <text class="time">{{getDate(item.depart_time)}} --- {{getDate(item.finish_time)}}</text>
             <text class="price right">￥{{ Number(item.fee) / 100 }}/人</text>
           </view>
         </view>
@@ -27,6 +31,7 @@
 <script>
 	import page from "../../utils/page";
 	import {wechatLocation} from '../../utils/auth'
+  import {getDate} from "../../utils/date"
   export default {
 		data() {
 			return {
@@ -56,6 +61,7 @@
       }
     },
 		methods: {
+      getDate,
       changeActivityType(index){
       },
       async getActivityList(){
@@ -116,8 +122,25 @@
   font-size: 12px;
 }
 .cover{
+  position: relative;
+  overflow: hidden;
+  border-radius: 12rpx;
   img{
     height: 300rpx;
+  }
+  .zz{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(000,000,000,.5);
+    width: 100%;
+    color: #FFF;
+    display: flex;
+    padding: 8rpx 0;
+    .days{
+      margin-left: auto;
+      padding-right: 4rpx;
+    }
   }
 }
 </style>

@@ -39,6 +39,7 @@
           <van-field placeholder="请输入姓名" label="姓名" :value="info.realname" @input="info.realname = $event.detail"/>
           <van-field placeholder="请输入手机号" label="手机号"  :value="info.phone" @input="info.phone = $event.detail"/>
           <van-field placeholder="请输入身份证号" label="身份证号"  :value="info.idcard" @input="info.idcard = $event.detail"/>
+          <van-field placeholder="紧急联系人手机号" label="手机号"  :value="info.contact" @input="info.contact = $event.detail"/>
           <view class="popup-bottom">
             <van-button type="primary" class="but" size="small" @click="add()">提交</van-button>
           </view>
@@ -67,7 +68,8 @@ export default {
         personnel_id: '',
         realname: '',
         phone: '',
-        idcard: ''
+        idcard: '',
+        contact: ''
       },
       currentIndex: -1
     }

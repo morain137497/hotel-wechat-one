@@ -13,7 +13,7 @@
       <div class="box">
         <van-cell title="用户编号" :value="vipInfo.user_id" />
         <van-cell title="参与活动数量" :value="vipInfo.attend_cnt" />
-        <van-cell title="参与活动折扣" :value="vipInfo.discount + '%'" />
+        <van-cell title="参与活动折扣" :value="vipInfo.discount?vipInfo.discount:0 + '%'" />
         <van-cell title="VIP等级" :value="vipInfo.level" />
       </div>
       <div class="box" v-if="userInfo.type !== '1' || userInfo.type !== '3'">

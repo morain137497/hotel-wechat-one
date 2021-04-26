@@ -14,21 +14,20 @@
           <div class="activity-number van-multi-ellipsis--l3">{{activityInfo.leader_introduce}}</div>
         </div>
       </div>
-      <van-cell title="活动标题" :value="activityInfo.title" />
-      <van-cell title="当前活动状态" :value="activityInfo.state === '1' ? '还未开始' : activityInfo.state === '2' ? '报名中' : '---'" />
-      <van-cell title="活动价格" :value="(Number(activityInfo.fee) / 100) + '元/人'" />
-      <van-cell title="开始报名时间" :value="activityInfo.begin_time" />
-      <van-cell title="截至报名时间" :value="activityInfo.end_time" />
-      <van-cell title="活动开始时间" :value="activityInfo.depart_time" />
-      <van-cell title="活动结束时间" :value="activityInfo.finish_time"/>
-      <van-cell title="活动起点城市" :value="activityInfo.start" />
-      <van-cell title="活动终点城市" :value="activityInfo.end" />
-      <van-cell title="最多报名人数" :value="activityInfo.attend_max" />
-      <van-cell title="最少成对人数" :value="activityInfo.attend_min" />
+    </div>
+
+    <div class="box">
+      <van-cell title="活动信息"  />
+      <van-cell class="cell-my" title="活动标题" :value="activityInfo.title" :border="false"/>
+      <van-cell :title="'活动价格 ：' + (Number(activityInfo.fee) / 100) + '元/人'" :value="'活动状态：' + activityInfo.state === '1' ? '还未开始' : activityInfo.state === '2' ? '报名中' : '---'" :border="false"/>
+      <van-cell :title="'开始报名 ：' + getDate(activityInfo.begin_time)" :value="'截至报名：' + getDate(activityInfo.end_time)" :border="false"/>
+      <van-cell :title="'开始时间 ：' + getDate(activityInfo.depart_time)" :value="'结束时间：' + getDate(activityInfo.finish_time)" :border="false"/>
+      <van-cell :title="'出发地 ：' + activityInfo.start" :value="'目的地：' + activityInfo.end" :border="false"/>
+      <van-cell :title="'召集人数 ：' + activityInfo.attend_max + '人'" :value="'成行人数：' + activityInfo.attend_min + '人'" :border="false"/>
     </div>
 
     <div class="box" v-if="activityInfo.attend_suc !== '0'">
-      <van-cell title="已经参加的人" :value="'已报名' + activityInfo.attend_suc + '人'"  is-link :url="'/pages/sign-up-user-list/fl?activity_id=' + activityInfo.activity_id"/>
+      <van-cell title="已经参加的人" :value="'已报名' + activityInfo.attend_suc + '人'"  is-link :url="'/pages/sign-up-user-list/index?activity_id=' + activityInfo.activity_id"/>
       <div class="box-row join-list">
         <div class="join-item" v-for="(item,index) in attends" :key="index">
           <img class="header-image" :src="item.headimg" alt="">
@@ -38,11 +37,19 @@
     </div>
 
     <div class="box">
-      <van-cell title="活动详情" />
-      <div class="box-row" v-html="activityInfo.content">
-      </div>
+      <van-tabs color="#4cd964">
+        <van-tab title="报名须知">
+          <div class="text" v-html="activityInfo.content"></div>
+        </van-tab>
+        <van-tab title="退款规则">
+          <div class="text" v-html="activityInfo.content"></div>
+        </van-tab>
+        <van-tab title="活动详情">
+          <div class="text" v-html="activityInfo.content"></div>
+        </van-tab>
+      </van-tabs>
     </div>
-    <van-goods-action >
+    <van-goods-action style="z-index:999">
 <!--      <van-goods-action-icon icon="friends-o" text="微信群号" @click="inGroup()"  />-->
       <van-goods-action-icon icon="phone-o" text="联系领队"  @click="callPhone()"/>
       <van-goods-action-button type="primary"  :text="activityInfo.state === '1' ? '活动还未开始' : activityInfo.state === '2' ? '去报名' : '---'" @click="toJoin()" :disabled="activityInfo.state !== '2'"/>
@@ -51,6 +58,7 @@
 </template>
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import {getDate} from "../../utils/date"
   export default {
 		data() {
 			return {
@@ -68,11 +76,13 @@ import {mapActions, mapGetters} from 'vuex'
 		onLoad(params) {
       this.getActivityInfo(params.activity_id)
       this.userInfo = this.getUserInfo
+      console.log(this.userInfo)
 		},
 		methods: {
       ...mapActions("signUp", {
         setActivityInfo: 'setActivityInfo'
       }),
+      getDate,
 		  async getActivityInfo(activity_id){
         const result = await this.$api.activity.activityInfo({
           activity_id: activity_id
@@ -125,5 +135,9 @@ import {mapActions, mapGetters} from 'vuex'
   .join-item{
     text-align: center;
   }
+}
+.text{
+  width: 96%;
+  margin: 20rpx auto;
 }
 </style>
