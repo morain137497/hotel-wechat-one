@@ -4,9 +4,113 @@
       <div class="item">
         <div class="cover">
           <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
         </div>
         <div class="info">
-          sdad
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="cover">
+          <img :src="banner" mode="widthFix">
+          <div class="zz">
+            <span class="start-city">杭州出发</span>
+            <span class="days">2天</span>
+          </div>
+        </div>
+        <div class="info">
+          <div class="time">2021-03-24 --- 2021-03-28</div>
+          <div class="title van-multi-ellipsis--l2">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</div>
+          <div class="price">1314元/人</div>
         </div>
       </div>
     </div>
@@ -69,11 +173,36 @@
   .item{
     break-inside: avoid;
     padding-bottom: 20rpx;
+    font-size: 24rpx;
     .cover{
-      font-size: 0;
+      position: relative;
+      border-radius: 12rpx;
+      overflow: hidden;
       img{
         width: 100%;
+        border-radius: 12rpx;
       }
+      .zz{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(000,000,000,.5);
+        width: 100%;
+        color: #FFF;
+        display: flex;
+        padding: 8rpx 0;
+        .days{
+          margin-left: auto;
+          padding-right: 4rpx;
+        }
+      }
+    }
+    .time,.title,.price{
+      padding: 4rpx;
+    }
+    .price{
+      color: red;
+      text-align: right;
     }
   }
 }
