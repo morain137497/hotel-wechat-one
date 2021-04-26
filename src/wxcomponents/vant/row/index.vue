@@ -6,7 +6,7 @@
 <wxs src="./index.wxs" module="computed"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/row/index'
+global['__wxRoute'] = 'vant/row/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -30,7 +30,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/row/index']
+export default global['__wxComponents']['vant/row/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-row:after{display:table;clear:both;content:""}

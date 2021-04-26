@@ -19,7 +19,7 @@ import VanCell from '../cell/index.vue'
 import VanIcon from '../icon/index.vue'
 global['__wxVueOptions'] = {components:{'van-popup': VanPopup,'van-cell': VanCell,'van-icon': VanIcon}}
 
-global['__wxRoute'] = 'vant/dropdown-item/index'
+global['__wxRoute'] = 'vant/dropdown-item/fl'
 import { useParent } from '../common/relation';
 import { VantComponent } from '../common/component';
 VantComponent({
@@ -131,7 +131,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/dropdown-item/index']
+export default global['__wxComponents']['vant/dropdown-item/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-dropdown-item{position:fixed;right:0;left:0;overflow:hidden}.van-dropdown-item__option{text-align:left}.van-dropdown-item__option--active .van-dropdown-item__icon,.van-dropdown-item__option--active .van-dropdown-item__title{color:#ee0a24;color:var(--dropdown-menu-option-active-color,#ee0a24)}.van-dropdown-item--up{top:0}.van-dropdown-item--down{bottom:0}.van-dropdown-item__icon{display:block;line-height:inherit}

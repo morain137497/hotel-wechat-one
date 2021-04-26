@@ -6,7 +6,7 @@
 <wxs src="./index.wxs" module="computed"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/grid/index'
+global['__wxRoute'] = 'vant/grid/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -57,7 +57,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/grid/index']
+export default global['__wxComponents']['vant/grid/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-grid{position:relative;box-sizing:border-box;overflow:hidden}

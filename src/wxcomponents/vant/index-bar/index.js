@@ -12,7 +12,7 @@ const indexList = () => {
   return indexList;
 };
 VantComponent({
-  relation: useChildren('index-anchor', function () {
+  relation: useChildren('fl-anchor', function () {
     this.updateData();
   }),
   props: {
@@ -77,7 +77,7 @@ VantComponent({
     setAnchorsRect() {
       return Promise.all(
         this.children.map((anchor) =>
-          getRect(anchor, '.van-index-anchor-wrapper').then((rect) => {
+          getRect(anchor, '.van-fl-anchor-wrapper').then((rect) => {
             Object.assign(anchor, {
               height: rect.height,
               top: rect.top + this.scrollTop,
@@ -87,7 +87,7 @@ VantComponent({
       );
     },
     setListRect() {
-      return getRect(this, '.van-index-bar').then((rect) => {
+      return getRect(this, '.van-fl-bar').then((rect) => {
         Object.assign(this, {
           height: rect.height,
           top: rect.top + this.scrollTop,
@@ -95,7 +95,7 @@ VantComponent({
       });
     },
     setSiderbarRect() {
-      return getRect(this, '.van-index-bar__sidebar').then((res) => {
+      return getRect(this, '.van-fl-bar__sidebar').then((res) => {
         this.sidebar = {
           height: res.height,
           top: res.top,
@@ -114,7 +114,7 @@ VantComponent({
       }
     },
     getAnchorRect(anchor) {
-      return getRect(anchor, '.van-index-anchor-wrapper').then((rect) => ({
+      return getRect(anchor, '.van-fl-anchor-wrapper').then((rect) => ({
         height: rect.height,
         top: rect.top,
       }));

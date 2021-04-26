@@ -14,7 +14,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/swipe-cell/index'
+global['__wxRoute'] = 'vant/swipe-cell/fl'
 import { VantComponent } from '../common/component';
 import { touch } from '../mixins/touch';
 import { range } from '../common/utils';
@@ -147,7 +147,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/swipe-cell/index']
+export default global['__wxComponents']['vant/swipe-cell/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-swipe-cell{position:relative;overflow:hidden}.van-swipe-cell__left,.van-swipe-cell__right{position:absolute;top:0;height:100%}.van-swipe-cell__left{left:0;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}.van-swipe-cell__right{right:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}

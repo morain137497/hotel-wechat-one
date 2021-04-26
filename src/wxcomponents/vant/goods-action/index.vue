@@ -6,7 +6,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/goods-action/index'
+global['__wxRoute'] = 'vant/goods-action/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -22,7 +22,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/goods-action/index']
+export default global['__wxComponents']['vant/goods-action/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-goods-action{position:fixed;right:0;bottom:0;left:0;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;box-sizing:initial;height:50px;height:var(--goods-action-height,50px);background-color:#fff;background-color:var(--goods-action-background-color,#fff)}.van-goods-action--safe{padding-bottom:env(safe-area-inset-bottom)}

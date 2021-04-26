@@ -11,7 +11,7 @@ import VanIcon from '../icon/index.vue'
 import VanButton from '../button/index.vue'
 global['__wxVueOptions'] = {components:{'van-icon': VanIcon,'van-button': VanButton}}
 
-global['__wxRoute'] = 'vant/goods-action-icon/index'
+global['__wxRoute'] = 'vant/goods-action-icon/fl'
 import { VantComponent } from '../common/component';
 import { button } from '../mixins/button';
 import { link } from '../mixins/link';
@@ -34,7 +34,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/goods-action-icon/index']
+export default global['__wxComponents']['vant/goods-action-icon/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-goods-action-icon{display:-webkit-flex!important;display:flex!important;-webkit-flex-direction:column;flex-direction:column;-webkit-justify-content:center!important;justify-content:center!important;line-height:1!important;border:none!important;font-size:10px!important;font-size:var(--goods-action-icon-font-size,10px)!important;color:#646566!important;color:var(--goods-action-icon-text-color,#646566)!important;min-width:48px;min-width:var(--goods-action-icon-width,48px);height:50px!important;height:var(--goods-action-icon-height,50px)!important}.van-goods-action-icon__icon{display:-webkit-flex;display:flex;margin:0 auto 5px;color:#323233;color:var(--goods-action-icon-color,#323233);font-size:18px;font-size:var(--goods-action-icon-size,18px)}

@@ -3,7 +3,7 @@
   <slot></slot>
 
   <view v-if="showSidebar" class="van-index-bar__sidebar" @click.stop.prevent="onClick" @touchmove.stop.prevent="onTouchMove" @touchend.stop.prevent="onTouchStop" @touchcancel.stop.prevent="onTouchStop">
-    <view v-for="(item,index) in (indexList)" :key="item.index" class="van-index-bar__index" :style="'z-index: '+(zIndex + 1)+'; color: '+(activeAnchorIndex === index ? highlightColor : '')" :data-index="index">
+    <view v-for="(item,index) in (indexList)" :key="item.index" class="van-index-bar__index" :style="'z-fl: '+(zIndex + 1)+'; color: '+(activeAnchorIndex === index ? highlightColor : '')" :data-index="index">
       {{ item }}
     </view>
   </view>
@@ -12,7 +12,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/index-bar/index'
+global['__wxRoute'] = 'vant/fl-bar/fl'
 import { GREEN } from '../common/color';
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
@@ -27,7 +27,7 @@ const indexList = () => {
   return indexList;
 };
 VantComponent({
-  relation: useChildren('index-anchor', function () {
+  relation: useChildren('fl-anchor', function () {
     this.updateData();
   }),
   props: {
@@ -92,7 +92,7 @@ VantComponent({
     setAnchorsRect() {
       return Promise.all(
         this.children.map((anchor) =>
-          getRect(anchor, '.van-index-anchor-wrapper').then((rect) => {
+          getRect(anchor, '.van-fl-anchor-wrapper').then((rect) => {
             Object.assign(anchor, {
               height: rect.height,
               top: rect.top + this.scrollTop,
@@ -102,7 +102,7 @@ VantComponent({
       );
     },
     setListRect() {
-      return getRect(this, '.van-index-bar').then((rect) => {
+      return getRect(this, '.van-fl-bar').then((rect) => {
         Object.assign(this, {
           height: rect.height,
           top: rect.top + this.scrollTop,
@@ -110,7 +110,7 @@ VantComponent({
       });
     },
     setSiderbarRect() {
-      return getRect(this, '.van-index-bar__sidebar').then((res) => {
+      return getRect(this, '.van-fl-bar__sidebar').then((res) => {
         this.sidebar = {
           height: res.height,
           top: res.top,
@@ -129,7 +129,7 @@ VantComponent({
       }
     },
     getAnchorRect(anchor) {
-      return getRect(anchor, '.van-index-anchor-wrapper').then((rect) => ({
+      return getRect(anchor, '.van-fl-anchor-wrapper').then((rect) => ({
         height: rect.height,
         top: rect.top,
       }));
@@ -258,7 +258,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/index-bar/index']
+export default global['__wxComponents']['vant/fl-bar/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-index-bar{position:relative}.van-index-bar__sidebar{position:fixed;top:50%;right:0;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;text-align:center;-webkit-transform:translateY(-50%);transform:translateY(-50%);-webkit-user-select:none;user-select:none}.van-index-bar__index{font-weight:500;padding:0 4px 0 16px;padding:0 var(--padding-base,4px) 0 var(--padding-md,16px);font-size:10px;font-size:var(--index-bar-index-font-size,10px);line-height:14px;line-height:var(--index-bar-index-line-height,14px)}

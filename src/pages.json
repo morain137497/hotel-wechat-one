@@ -7,6 +7,12 @@
 			}
 		},
 		{
+			"path": "pages/fl/index",
+			"style": {
+				"navigationBarTitleText": "分类"
+			}
+		},
+		{
 			"path": "pages/login/index",
 			"style": {
 				"navigationBarTitleText": "授权"
@@ -95,6 +101,10 @@
 			{
 				"pagePath": "pages/index/index",
 				"text": "首页"
+			},
+			{
+				"pagePath": "pages/fl/index",
+				"text": "分页"
 			},
 			{
 				"pagePath": "pages/order/index",

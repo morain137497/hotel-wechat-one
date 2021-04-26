@@ -1,5 +1,5 @@
 <template>
-<uni-shadow-root class="vant-tabbar-index"><view :class="(border ? 'van-hairline--top-bottom' : '')+' '+(utils.bem('tabbar', { fixed, safe: safeAreaInsetBottom }))+' custom-class'" :style="zIndex ? 'z-index: ' + zIndex : ''">
+<uni-shadow-root class="vant-tabbar-index"><view :class="(border ? 'van-hairline--top-bottom' : '')+' '+(utils.bem('tabbar', { fixed, safe: safeAreaInsetBottom }))+' custom-class'" :style="zIndex ? 'z-fl: ' + zIndex : ''">
   <slot></slot>
 </view>
 
@@ -8,7 +8,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/tabbar/index'
+global['__wxRoute'] = 'vant/tabbar/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 import { getRect } from '../common/utils';
@@ -74,7 +74,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/tabbar/index']
+export default global['__wxComponents']['vant/tabbar/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-tabbar{display:-webkit-flex;display:flex;box-sizing:initial;width:100%;height:50px;height:var(--tabbar-height,50px);background-color:#fff;background-color:var(--tabbar-background-color,#fff)}.van-tabbar--fixed{position:fixed;bottom:0;left:0}.van-tabbar--safe{padding-bottom:env(safe-area-inset-bottom)}

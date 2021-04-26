@@ -8,7 +8,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs><wxs src="./index.wxs" module="computed"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/sticky/index'
+global['__wxRoute'] = 'vant/sticky/fl'
 import { getRect } from '../common/utils';
 import { VantComponent } from '../common/component';
 import { pageScrollMixin } from '../mixins/page-scroll';
@@ -122,7 +122,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/sticky/index']
+export default global['__wxComponents']['vant/sticky/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-sticky{position:relative}.van-sticky-wrap--fixed{position:fixed;right:0;left:0}

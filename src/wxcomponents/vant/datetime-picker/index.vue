@@ -6,7 +6,7 @@
 import VanPicker from '../picker/index.vue'
 global['__wxVueOptions'] = {components:{'van-picker': VanPicker}}
 
-global['__wxRoute'] = 'vant/datetime-picker/index'
+global['__wxRoute'] = 'vant/datetime-picker/fl'
 import { VantComponent } from '../common/component';
 import { isDef } from '../common/validator';
 import { pickerProps } from '../picker/shared';
@@ -331,7 +331,7 @@ VantComponent({
     });
   },
 });
-export default global['__wxComponents']['vant/datetime-picker/index']
+export default global['__wxComponents']['vant/datetime-picker/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';

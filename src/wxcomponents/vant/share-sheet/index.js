@@ -5,7 +5,7 @@ VantComponent({
     show: Boolean,
     // overlay custom style
     overlayStyle: Object,
-    // z-index
+    // z-fl
     zIndex: {
       type: Number,
       value: 100,

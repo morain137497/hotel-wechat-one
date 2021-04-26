@@ -134,7 +134,7 @@ VantComponent({
         });
       }
     },
-    // correct the index of active tab
+    // correct the fl of active tab
     setCurrentIndexByName(name) {
       const { children = [] } = this;
       const matched = children.filter(

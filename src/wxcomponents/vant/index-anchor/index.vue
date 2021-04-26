@@ -1,6 +1,6 @@
 <template>
 <uni-shadow-root class="vant-index-anchor-index"><view class="van-index-anchor-wrapper" :style="wrapperStyle">
-  <view :class="'van-index-anchor '+(active ? 'van-index-anchor--active van-hairline--bottom' : '')" :style="anchorStyle">
+  <view :class="'van-fl-anchor '+(active ? 'van-fl-anchor--active van-hairline--bottom' : '')" :style="anchorStyle">
     <slot v-if="useSlot"></slot>
     <block v-else>
       <text>{{ index }}</text>
@@ -11,12 +11,12 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/index-anchor/index'
+global['__wxRoute'] = 'vant/fl-anchor/fl'
 import { getRect } from '../common/utils';
 import { VantComponent } from '../common/component';
 import { useParent } from '../common/relation';
 VantComponent({
-  relation: useParent('index-bar'),
+  relation: useParent('fl-bar'),
   props: {
     useSlot: Boolean,
     index: null,
@@ -28,7 +28,7 @@ VantComponent({
   },
   methods: {
     scrollIntoView(scrollTop) {
-      getRect(this, '.van-index-anchor-wrapper').then((rect) => {
+      getRect(this, '.van-fl-anchor-wrapper').then((rect) => {
         wx.pageScrollTo({
           duration: 0,
           scrollTop: scrollTop + rect.top - this.parent.data.stickyOffsetTop,
@@ -37,7 +37,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/index-anchor/index']
+export default global['__wxComponents']['vant/fl-anchor/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-index-anchor{padding:0 16px;padding:var(--index-anchor-padding,0 16px);color:#323233;color:var(--index-anchor-text-color,#323233);font-weight:500;font-weight:var(--index-anchor-font-weight,500);font-size:14px;font-size:var(--index-anchor-font-size,14px);line-height:32px;line-height:var(--index-anchor-line-height,32px);background-color:initial;background-color:var(--index-anchor-background-color,transparent)}.van-index-anchor--active{right:0;left:0;color:#07c160;color:var(--index-anchor-active-text-color,#07c160);background-color:#fff;background-color:var(--index-anchor-active-background-color,#fff)}

@@ -31,7 +31,7 @@ import VanPopup from '../popup/index.vue'
 import Options from './options.vue'
 global['__wxVueOptions'] = {components:{'van-popup': VanPopup,'options': Options}}
 
-global['__wxRoute'] = 'vant/share-sheet/index'
+global['__wxRoute'] = 'vant/share-sheet/fl'
 import { VantComponent } from '../common/component';
 VantComponent({
   props: {
@@ -39,7 +39,7 @@ VantComponent({
     show: Boolean,
     // overlay custom style
     overlayStyle: Object,
-    // z-index
+    // z-fl
     zIndex: {
       type: Number,
       value: 100,
@@ -87,7 +87,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/share-sheet/index']
+export default global['__wxComponents']['vant/share-sheet/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-share-sheet__header{padding:12px 16px 4px;text-align:center}.van-share-sheet__title{margin-top:8px;color:#323233;font-weight:400;font-size:14px;line-height:20px}.van-share-sheet__title:empty,.van-share-sheet__title:not(:empty)+.van-share-sheet__title{display:none}.van-share-sheet__description{display:block;margin-top:8px;color:#969799;font-size:12px;line-height:16px}.van-share-sheet__description:empty,.van-share-sheet__description:not(:empty)+.van-share-sheet__description{display:none}.van-share-sheet__cancel{display:block;box-sizing:initial;width:100%;height:auto;padding:0;font-size:16px;line-height:48px;text-align:center;background:#fff;border:none}.van-share-sheet__cancel:before{display:block;height:8px;background-color:#f7f8fa;content:" "}.van-share-sheet__cancel:after{display:none}.van-share-sheet__cancel:active{background-color:#f2f3f5}

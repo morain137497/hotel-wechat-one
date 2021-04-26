@@ -6,7 +6,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/tab/index'
+global['__wxRoute'] = 'vant/tab/fl'
 import { useParent } from '../common/relation';
 import { VantComponent } from '../common/component';
 VantComponent({
@@ -63,7 +63,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/tab/index']
+export default global['__wxComponents']['vant/tab/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.vant-tab-index{-webkit-flex-shrink:0;flex-shrink:0;width:100%}.van-tab__pane,:host{box-sizing:border-box}.van-tab__pane{overflow-y:auto;-webkit-overflow-scrolling:touch}.van-tab__pane--active{height:auto}.van-tab__pane--inactive{height:0;overflow:visible}

@@ -11,7 +11,7 @@
 import VanTransition from '../transition/index.vue'
 global['__wxVueOptions'] = {components:{'van-transition': VanTransition}}
 
-global['__wxRoute'] = 'vant/notify/index'
+global['__wxRoute'] = 'vant/notify/fl'
 import { VantComponent } from '../common/component';
 import { WHITE } from '../common/color';
 import { getSystemInfoSync } from '../common/utils';
@@ -77,7 +77,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/notify/index']
+export default global['__wxComponents']['vant/notify/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-notify{text-align:center;word-wrap:break-word;padding:6px 15px;padding:var(--notify-padding,6px 15px);font-size:14px;font-size:var(--notify-font-size,14px);line-height:20px;line-height:var(--notify-line-height,20px)}.van-notify__container{position:fixed;top:0;left:0;box-sizing:border-box;width:100%}.van-notify--primary{background-color:#1989fa;background-color:var(--notify-primary-background-color,#1989fa)}.van-notify--success{background-color:#07c160;background-color:var(--notify-success-background-color,#07c160)}.van-notify--danger{background-color:#ee0a24;background-color:var(--notify-danger-background-color,#ee0a24)}.van-notify--warning{background-color:#ff976a;background-color:var(--notify-warning-background-color,#ff976a)}

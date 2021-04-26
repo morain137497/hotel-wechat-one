@@ -20,7 +20,7 @@ import VanPopup from '../popup/index.vue'
 import VanToast from '../toast/index.vue'
 global['__wxVueOptions'] = {components:{'header': Header,'month': Month,'van-button': VanButton,'van-popup': VanPopup,'van-toast': VanToast,}}
 
-global['__wxRoute'] = 'vant/calendar/index'
+global['__wxRoute'] = 'vant/calendar/fl'
 import { VantComponent } from '../common/component';
 import {
   ROW_HEIGHT,
@@ -318,7 +318,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/calendar/index']
+export default global['__wxComponents']['vant/calendar/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-calendar{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;height:100%;height:var(--calendar-height,100%);background-color:#fff;background-color:var(--calendar-background-color,#fff)}.van-calendar__close-icon{top:11px}.van-calendar__popup--bottom,.van-calendar__popup--top{height:80%;height:var(--calendar-popup-height,80%)}.van-calendar__popup--left,.van-calendar__popup--right{height:100%}.van-calendar__body{-webkit-flex:1;flex:1;overflow:auto;-webkit-overflow-scrolling:touch}.van-calendar__footer{-webkit-flex-shrink:0;flex-shrink:0;padding:0 16px;padding:0 var(--padding-md,16px)}.van-calendar__footer--safe-area-inset-bottom{padding-bottom:env(safe-area-inset-bottom)}.van-calendar__footer+.van-calendar__footer,.van-calendar__footer:empty{display:none}.van-calendar__footer:empty+.van-calendar__footer{display:block!important}.van-calendar__confirm{height:36px!important;height:var(--calendar-confirm-button-height,36px)!important;margin:7px 0!important;margin:var(--calendar-confirm-button-margin,7px 0)!important;line-height:34px!important;line-height:var(--calendar-confirm-button-line-height,34px)!important}

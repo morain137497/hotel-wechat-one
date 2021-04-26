@@ -6,7 +6,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/collapse/index'
+global['__wxRoute'] = 'vant/collapse/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -51,7 +51,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/collapse/index']
+export default global['__wxComponents']['vant/collapse/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';

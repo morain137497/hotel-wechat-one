@@ -18,7 +18,7 @@ import VanIcon from '../icon/index.vue'
 import VanLoading from '../loading/index.vue'
 global['__wxVueOptions'] = {components:{'van-icon': VanIcon,'van-loading': VanLoading}}
 
-global['__wxRoute'] = 'vant/image/index'
+global['__wxRoute'] = 'vant/image/fl'
 import { VantComponent } from '../common/component';
 import { button } from '../mixins/button';
 import { openType } from '../mixins/open-type';
@@ -80,7 +80,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/image/index']
+export default global['__wxComponents']['vant/image/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-image{position:relative;display:inline-block}.van-image--round{overflow:hidden;border-radius:50%}.van-image--round .van-image__img{border-radius:inherit}.van-image__error,.van-image__img,.van-image__loading{display:block;width:100%;height:100%}.van-image__error,.van-image__loading{position:absolute;top:0;left:0;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:#969799;color:var(--image-placeholder-text-color,#969799);font-size:14px;font-size:var(--image-placeholder-font-size,14px);background-color:#f7f8fa;background-color:var(--image-placeholder-background-color,#f7f8fa)}.van-image__loading-icon{color:#dcdee0;color:var(--image-loading-icon-color,#dcdee0);font-size:32px!important;font-size:var(--image-loading-icon-size,32px)!important}.van-image__error-icon{color:#dcdee0;color:var(--image-error-icon-color,#dcdee0);font-size:32px!important;font-size:var(--image-error-icon-size,32px)!important}

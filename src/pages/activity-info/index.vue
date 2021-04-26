@@ -28,7 +28,7 @@
     </div>
 
     <div class="box" v-if="activityInfo.attend_suc !== '0'">
-      <van-cell title="已经参加的人" :value="'已报名' + activityInfo.attend_suc + '人'"  is-link :url="'/pages/sign-up-user-list/index?activity_id=' + activityInfo.activity_id"/>
+      <van-cell title="已经参加的人" :value="'已报名' + activityInfo.attend_suc + '人'"  is-link :url="'/pages/sign-up-user-list/fl?activity_id=' + activityInfo.activity_id"/>
       <div class="box-row join-list">
         <div class="join-item" v-for="(item,index) in attends" :key="index">
           <img class="header-image" :src="item.headimg" alt="">

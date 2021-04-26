@@ -29,7 +29,7 @@
 import VanIcon from '../icon/index.vue'
 global['__wxVueOptions'] = {components:{'van-icon': VanIcon}}
 
-global['__wxRoute'] = 'vant/cell/index'
+global['__wxRoute'] = 'vant/cell/fl'
 import { link } from '../mixins/link';
 import { VantComponent } from '../common/component';
 VantComponent({
@@ -68,7 +68,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/cell/index']
+export default global['__wxComponents']['vant/cell/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';

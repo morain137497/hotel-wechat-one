@@ -1,7 +1,7 @@
 <template>
   <div class="my">
 <!--    <van-tabs color="#4cd964" :active="active" @change="changeOrderStatus">-->
-<!--      <van-tab v-for="(item,index) in orderNav" :key="index" :title="item.label">-->
+<!--      <van-tab v-for="(item,fl) in orderNav" :key="fl" :title="item.label">-->
         <template v-if="orderList.length !== 0">
           <div class="box" v-for="(item,index) in orderList" :key="index">
             <van-panel :title="item.activity.title" :desc="item.gather.time + '在' + item.gather.address + '集合'" :status="item.create_time">

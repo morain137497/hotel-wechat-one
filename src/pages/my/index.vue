@@ -38,7 +38,7 @@
 <!--      <div class="box">-->
 <!--        <van-cell title="订单" value="查看全部" is-link />-->
 <!--        <div class="order-nav">-->
-<!--          <div class="order-nav-item" v-for="(item,index) in orderNav" :key="index" @click="toOrder(index)">-->
+<!--          <div class="order-nav-item" v-for="(item,fl) in orderNav" :key="fl" @click="toOrder(fl)">-->
 <!--            <van-icon :name="item.icon" />-->
 <!--            <view>{{item.label}}</view>-->
 <!--          </div>-->

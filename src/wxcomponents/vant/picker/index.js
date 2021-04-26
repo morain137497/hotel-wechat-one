@@ -70,16 +70,16 @@ VantComponent({
         });
       }
     },
-    // get column instance by index
+    // get column instance by fl
     getColumn(index) {
       return this.children[index];
     },
-    // get column value by index
+    // get column value by fl
     getColumnValue(index) {
       const column = this.getColumn(index);
       return column && column.getValue();
     },
-    // set column value by index
+    // set column value by fl
     setColumnValue(index, value) {
       const column = this.getColumn(index);
       if (column == null) {
@@ -87,11 +87,11 @@ VantComponent({
       }
       return column.setValue(value);
     },
-    // get column option index by column index
+    // get column option fl by column fl
     getColumnIndex(columnIndex) {
       return (this.getColumn(columnIndex) || {}).data.currentIndex;
     },
-    // set column option index by column index
+    // set column option fl by column fl
     setColumnIndex(columnIndex, optionIndex) {
       const column = this.getColumn(columnIndex);
       if (column == null) {
@@ -99,11 +99,11 @@ VantComponent({
       }
       return column.setIndex(optionIndex);
     },
-    // get options of column by index
+    // get options of column by fl
     getColumnValues(index) {
       return (this.children[index] || {}).data.options;
     },
-    // set options of column by index
+    // set options of column by fl
     setColumnValues(index, options, needReset = true) {
       const column = this.children[index];
       if (column == null) {

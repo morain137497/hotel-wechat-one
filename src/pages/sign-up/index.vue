@@ -14,7 +14,7 @@
 
 <!--    <div class="box">-->
 <!--      <van-cell title="优惠抵扣" :value="'小计:' + (Object.keys(couponInfo).length == 0?0:couponInfo.price) + '元'" />-->
-<!--      <van-cell title="代金卷" value="查看代金卷" is-link url="/pages/coupon/index" />-->
+<!--      <van-cell title="代金卷" value="查看代金卷" is-link url="/pages/coupon/fl" />-->
 <!--    </div>-->
 
     <div class="box">

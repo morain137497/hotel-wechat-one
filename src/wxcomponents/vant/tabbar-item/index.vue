@@ -19,7 +19,7 @@ import VanIcon from '../icon/index.vue'
 import VanInfo from '../info/index.vue'
 global['__wxVueOptions'] = {components:{'van-icon': VanIcon,'van-info': VanInfo}}
 
-global['__wxRoute'] = 'vant/tabbar-item/index'
+global['__wxRoute'] = 'vant/tabbar-item/fl'
 import { VantComponent } from '../common/component';
 import { useParent } from '../common/relation';
 VantComponent({
@@ -76,7 +76,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/tabbar-item/index']
+export default global['__wxComponents']['vant/tabbar-item/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.vant-tabbar-item-index{-webkit-flex:1;flex:1}.van-tabbar-item{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;height:100%;color:#646566;color:var(--tabbar-item-text-color,#646566);font-size:12px;font-size:var(--tabbar-item-font-size,12px);line-height:1;line-height:var(--tabbar-item-line-height,1)}.van-tabbar-item__icon{position:relative;margin-bottom:4px;margin-bottom:var(--tabbar-item-margin-bottom,4px);font-size:22px;font-size:var(--tabbar-item-icon-size,22px)}.van-tabbar-item__icon__inner{display:block;min-width:1em}.van-tabbar-item--active{color:#1989fa;color:var(--tabbar-item-active-color,#1989fa)}.van-tabbar-item__info{margin-top:2px}

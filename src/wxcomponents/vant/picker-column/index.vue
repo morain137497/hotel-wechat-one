@@ -8,7 +8,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs><wxs src="./index.wxs" module="computed"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/picker-column/index'
+global['__wxRoute'] = 'vant/picker-column/fl'
 import { VantComponent } from '../common/component';
 import { range } from '../common/utils';
 import { isObj } from '../common/validator';
@@ -133,7 +133,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/picker-column/index']
+export default global['__wxComponents']['vant/picker-column/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-picker-column{overflow:hidden;text-align:center;color:#000;color:var(--picker-option-text-color,#000);font-size:16px;font-size:var(--picker-option-font-size,16px)}.van-picker-column__item{padding:0 5px}.van-picker-column__item--selected{font-weight:500;font-weight:var(--font-weight-bold,500);color:#323233;color:var(--picker-option-selected-text-color,#323233)}.van-picker-column__item--disabled{opacity:.3;opacity:var(--picker-option-disabled-opacity,.3)}

@@ -7,7 +7,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/count-down/index'
+global['__wxRoute'] = 'vant/count-down/fl'
 import { VantComponent } from '../common/component';
 import { isSameSecond, parseFormat, parseTimeData } from './utils';
 function simpleTick(fn) {
@@ -107,7 +107,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/count-down/index']
+export default global['__wxComponents']['vant/count-down/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-count-down{color:#323233;color:var(--count-down-text-color,#323233);font-size:14px;font-size:var(--count-down-font-size,14px);line-height:20px;line-height:var(--count-down-line-height,20px)}

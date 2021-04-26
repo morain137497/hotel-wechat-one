@@ -21,7 +21,7 @@ import PickerColumn from '../picker-column/index.vue'
 import Loading from '../loading/index.vue'
 global['__wxVueOptions'] = {components:{'picker-column': PickerColumn,'loading': Loading}}
 
-global['__wxRoute'] = 'vant/picker/index'
+global['__wxRoute'] = 'vant/picker/fl'
 import { VantComponent } from '../common/component';
 import { pickerProps } from './shared';
 VantComponent({
@@ -94,16 +94,16 @@ VantComponent({
         });
       }
     },
-    // get column instance by index
+    // get column instance by fl
     getColumn(index) {
       return this.children[index];
     },
-    // get column value by index
+    // get column value by fl
     getColumnValue(index) {
       const column = this.getColumn(index);
       return column && column.getValue();
     },
-    // set column value by index
+    // set column value by fl
     setColumnValue(index, value) {
       const column = this.getColumn(index);
       if (column == null) {
@@ -111,11 +111,11 @@ VantComponent({
       }
       return column.setValue(value);
     },
-    // get column option index by column index
+    // get column option fl by column fl
     getColumnIndex(columnIndex) {
       return (this.getColumn(columnIndex) || {}).data.currentIndex;
     },
-    // set column option index by column index
+    // set column option fl by column fl
     setColumnIndex(columnIndex, optionIndex) {
       const column = this.getColumn(columnIndex);
       if (column == null) {
@@ -123,11 +123,11 @@ VantComponent({
       }
       return column.setIndex(optionIndex);
     },
-    // get options of column by index
+    // get options of column by fl
     getColumnValues(index) {
       return (this.children[index] || {}).data.options;
     },
-    // set options of column by index
+    // set options of column by fl
     setColumnValues(index, options, needReset = true) {
       const column = this.children[index];
       if (column == null) {
@@ -168,7 +168,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/picker/index']
+export default global['__wxComponents']['vant/picker/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-picker{position:relative;overflow:hidden;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none;background-color:#fff;background-color:var(--picker-background-color,#fff)}.van-picker__toolbar{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;height:44px;height:var(--picker-toolbar-height,44px);line-height:44px;line-height:var(--picker-toolbar-height,44px)}.van-picker__cancel,.van-picker__confirm{padding:0 16px;padding:var(--picker-action-padding,0 16px);font-size:14px;font-size:var(--picker-action-font-size,14px)}.van-picker__cancel--hover,.van-picker__confirm--hover{opacity:.7}.van-picker__confirm{color:#576b95;color:var(--picker-confirm-action-color,#576b95)}.van-picker__cancel{color:#969799;color:var(--picker-cancel-action-color,#969799)}.van-picker__title{max-width:50%;text-align:center;font-weight:500;font-weight:var(--font-weight-bold,500);font-size:16px;font-size:var(--picker-option-font-size,16px)}.van-picker__columns{position:relative;display:-webkit-flex;display:flex}.van-picker__column{-webkit-flex:1 1;flex:1 1;width:0}.van-picker__loading{position:absolute;top:0;right:0;bottom:0;left:0;z-index:4;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;background-color:hsla(0,0%,100%,.9);background-color:var(--picker-loading-mask-color,hsla(0,0%,100%,.9))}.van-picker__mask{top:0;left:0;z-index:2;width:100%;height:100%;background-image:linear-gradient(180deg,hsla(0,0%,100%,.9),hsla(0,0%,100%,.4)),linear-gradient(0deg,hsla(0,0%,100%,.9),hsla(0,0%,100%,.4));background-repeat:no-repeat;background-position:top,bottom;-webkit-backface-visibility:hidden;backface-visibility:hidden}.van-picker__frame,.van-picker__mask{position:absolute;pointer-events:none}.van-picker__frame{top:50%;right:16px;left:16px;z-index:1;-webkit-transform:translateY(-50%);transform:translateY(-50%)}

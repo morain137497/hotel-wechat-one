@@ -6,7 +6,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/radio-group/index'
+global['__wxRoute'] = 'vant/radio-group/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -39,7 +39,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/radio-group/index']
+export default global['__wxComponents']['vant/radio-group/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-radio-group--horizontal{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap}

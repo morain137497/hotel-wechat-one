@@ -4,7 +4,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/checkbox-group/index'
+global['__wxRoute'] = 'vant/checkbox-group/fl'
 import { useChildren } from '../common/relation';
 import { VantComponent } from '../common/component';
 VantComponent({
@@ -36,7 +36,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/checkbox-group/index']
+export default global['__wxComponents']['vant/checkbox-group/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';

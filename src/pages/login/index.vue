@@ -25,7 +25,7 @@ export default {
     return{
       text: '联系方式',
       phone: '',
-      userInfo: ''
+      userInfo: {}
     }
   },
   computed:{
@@ -45,7 +45,7 @@ export default {
       if(!this.userInfo.nickname){
         wechatUserInfo((result) => {
           this.userInfo = result
-          this.$emit('wechatUserInfoSuccess')
+          uni.navigateBack()
         })
       }
     }

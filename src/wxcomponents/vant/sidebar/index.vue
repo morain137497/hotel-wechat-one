@@ -6,7 +6,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/sidebar/index'
+global['__wxRoute'] = 'vant/sidebar/fl'
 import { VantComponent } from '../common/component';
 import { useChildren } from '../common/relation';
 VantComponent({
@@ -41,7 +41,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/sidebar/index']
+export default global['__wxComponents']['vant/sidebar/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-sidebar{width:80px;width:var(--sidebar-width,80px)}

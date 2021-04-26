@@ -6,7 +6,7 @@
 import VanPicker from '../picker/index.vue'
 global['__wxVueOptions'] = {components:{'van-picker': VanPicker}}
 
-global['__wxRoute'] = 'vant/area/index'
+global['__wxRoute'] = 'vant/area/fl'
 import { VantComponent } from '../common/component';
 import { pickerProps } from '../picker/shared';
 import { requestAnimationFrame } from '../common/utils';
@@ -239,7 +239,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/area/index']
+export default global['__wxComponents']['vant/area/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';

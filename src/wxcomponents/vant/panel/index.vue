@@ -17,7 +17,7 @@
 import VanCell from '../cell/index.vue'
 global['__wxVueOptions'] = {components:{'van-cell': VanCell}}
 
-global['__wxRoute'] = 'vant/panel/index'
+global['__wxRoute'] = 'vant/panel/fl'
 import { VantComponent } from '../common/component';
 VantComponent({
   classes: ['header-class', 'footer-class'],
@@ -28,7 +28,7 @@ VantComponent({
     useFooterSlot: Boolean,
   },
 });
-export default global['__wxComponents']['vant/panel/index']
+export default global['__wxComponents']['vant/panel/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-panel{background:#fff;background:var(--panel-background-color,#fff)}.van-panel__header-value{color:#ee0a24;color:var(--panel-header-value-color,#ee0a24)}.van-panel__footer{padding:8px 16px;padding:var(--panel-footer-padding,8px 16px)}

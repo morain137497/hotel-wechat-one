@@ -10,7 +10,7 @@
 <wxs src="../wxs/utils.wxs" module="utils"></wxs>
 <script>
 
-global['__wxRoute'] = 'vant/circle/index'
+global['__wxRoute'] = 'vant/circle/fl'
 import { BLUE, WHITE } from '../common/color';
 import { VantComponent } from '../common/component';
 import { getSystemInfoSync } from '../common/utils';
@@ -197,7 +197,7 @@ VantComponent({
     this.clearInterval();
   },
 });
-export default global['__wxComponents']['vant/circle/index']
+export default global['__wxComponents']['vant/circle/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-circle{position:relative;display:inline-block;text-align:center}.van-circle__text{position:absolute;top:50%;left:0;width:100%;-webkit-transform:translateY(-50%);transform:translateY(-50%);color:#323233;color:var(--circle-text-color,#323233)}

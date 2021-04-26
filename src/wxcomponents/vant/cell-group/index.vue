@@ -9,7 +9,7 @@
 
 <script>
 
-global['__wxRoute'] = 'vant/cell-group/index'
+global['__wxRoute'] = 'vant/cell-group/fl'
 import { VantComponent } from '../common/component';
 VantComponent({
   props: {
@@ -20,7 +20,7 @@ VantComponent({
     },
   },
 });
-export default global['__wxComponents']['vant/cell-group/index']
+export default global['__wxComponents']['vant/cell-group/fl']
 </script>
 <style platform="mp-weixin">
 @import '../common/index.css';.van-cell-group__title{padding:16px 16px 8px;padding:var(--cell-group-title-padding,16px 16px 8px);font-size:14px;font-size:var(--cell-group-title-font-size,14px);line-height:16px;line-height:var(--cell-group-title-line-height,16px);color:#969799;color:var(--cell-group-title-color,#969799)}
